@@ -2531,3 +2531,458 @@ button {
     font-size: 32px;
   }
 }
+/* =========================================================
+   ONE SCREEN FIT
+   履歴カードまで1画面に収める
+========================================================= */
+
+/* 全体の上下余白を圧縮 */
+.screen {
+  padding-top:
+    calc(8px + env(safe-area-inset-top));
+
+  padding-bottom:
+    calc(12px + env(safe-area-inset-bottom));
+}
+
+
+/* =========================================================
+   敵エリア
+========================================================= */
+
+.top-panel {
+  height: 150px;
+
+  padding:
+    5px 7px 4px;
+
+  grid-template-columns:
+    0.92fr 1.28fr 0.9fr;
+}
+
+
+/* タイトル */
+
+.title-block h1 {
+  font-size: clamp(19px, 5.9vw, 27px);
+
+  line-height: 0.87;
+}
+
+.title-block p {
+  margin-top: 5px;
+
+  font-size: 6px;
+}
+
+
+/* 左の英字 */
+
+.tiny-copy {
+  top: 78px;
+
+  font-size: 4px;
+
+  line-height: 1.9;
+}
+
+
+/* 左の円 */
+
+.compass {
+  width: 44px;
+  height: 44px;
+
+  left: 37px;
+  top: 88px;
+}
+
+.compass::before {
+  height: 62px;
+
+  top: -9px;
+}
+
+.compass::after {
+  width: 62px;
+
+  left: -9px;
+}
+
+
+/* =========================================================
+   敵
+========================================================= */
+
+.enemy-art {
+  height: 141px;
+}
+
+.enemy-circle {
+  width: 105px;
+  height: 105px;
+
+  top: 10px;
+}
+
+.enemy-mask {
+  width: 62px;
+  height: 91px;
+
+  top: 23px;
+}
+
+.enemy-cloak {
+  height: 111px;
+}
+
+.cloak-left,
+.cloak-right {
+  width: 73px;
+}
+
+.enemy-copy {
+  padding-top: 7px;
+}
+
+.enemy-copy blockquote {
+  font-size: 6px;
+
+  line-height: 1.5;
+}
+
+.enemy-name-card {
+  margin-top: 7px;
+
+  padding:
+    5px 6px;
+}
+
+.enemy-name-card small {
+  font-size: 4px;
+}
+
+.enemy-name-card strong {
+  margin-top: 3px;
+
+  font-size: 11px;
+}
+
+.enemy-name-card em {
+  padding:
+    2px 0 3px;
+
+  font-size: 4px;
+}
+
+.enemy-name-card span {
+  margin-top: 4px;
+
+  font-size: 5px;
+}
+
+
+/* =========================================================
+   BATTLEヘッダー
+========================================================= */
+
+.battle-panel {
+  padding:
+    5px 7px 0;
+}
+
+.battle-meta {
+  height: 31px;
+}
+
+.battle-number {
+  padding:
+    5px 12px;
+
+  font-size: 7px;
+}
+
+.score-box {
+  gap: 4px;
+}
+
+.score-box span {
+  font-size: 5px;
+}
+
+.score-box strong {
+  font-size: 24px;
+}
+
+.score-box small {
+  font-size: 7px;
+}
+
+
+/* =========================================================
+   説明
+========================================================= */
+
+.instruction {
+  padding:
+    3px 0 5px;
+}
+
+.instruction h2 {
+  max-width: 96%;
+
+  font-size: clamp(11px, 3.5vw, 15px);
+
+  line-height: 1.35;
+}
+
+.instruction p {
+  margin-top: 1px;
+
+  font-size: 6px;
+}
+
+
+/* =========================================================
+   勝つ / 負ける
+========================================================= */
+
+.prediction-row {
+  gap: 9px;
+
+  margin:
+    0 auto 7px;
+}
+
+.prediction-button {
+  height: 36px;
+
+  font-size: 13px;
+}
+
+.prediction-button span {
+  margin-right: 10px;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   メインカード
+========================================================= */
+
+.main-cards {
+  gap: 8px;
+
+  /*
+    横幅は維持しつつ、
+    高さだけ少し抑える
+  */
+  padding:
+    0 3px;
+}
+
+.playing-card {
+  /*
+    数値を大きくすると
+    カードが横長になり高さが減る
+  */
+  aspect-ratio: 0.72;
+}
+
+
+/* 選択時 */
+
+.playing-card.is-selected {
+  transform:
+    translateY(-3px)
+    scale(1.012);
+}
+
+
+/* =========================================================
+   カード内部
+========================================================= */
+
+.top-left-card strong {
+  font-size:
+    clamp(
+      18px,
+      5.8vw,
+      26px
+    );
+}
+
+.main-hand {
+  width: 75%;
+  height: 59%;
+
+  left: 12.5%;
+  top: 18%;
+}
+
+.color-disc {
+  width: 65%;
+
+  left: 17.5%;
+}
+
+
+/* =========================================================
+   WIN / LOSE
+========================================================= */
+
+.result-overlay {
+  width:
+    calc(
+      (100% - 22px) / 3
+    );
+
+  aspect-ratio: 0.72;
+
+  top: -3px;
+}
+
+.position-0 {
+  left: 3px;
+}
+
+.position-1 {
+  left:
+    calc(
+      ((100% - 22px) / 3)
+      + 11px
+    );
+}
+
+.position-2 {
+  right: 3px;
+}
+
+.result-word {
+  margin-top: 5px;
+
+  font-size:
+    clamp(
+      28px,
+      8.5vw,
+      40px
+    );
+}
+
+.prediction-result {
+  margin-top: 6px;
+
+  padding:
+    4px 4px;
+}
+
+
+/* =========================================================
+   次の勝負へ
+========================================================= */
+
+.after-result {
+  padding-top: 7px;
+}
+
+.next-button {
+  height: 39px;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   履歴
+========================================================= */
+
+.history-panel {
+  margin-top: 9px;
+
+  padding-top: 7px;
+}
+
+.history-panel h3 {
+  margin:
+    0 0 5px;
+
+  font-size: 7px;
+}
+
+
+/*
+  ここは重要。
+
+  9枚を少し低くして、
+  全部見えるようにする。
+*/
+
+.history-cards {
+  gap: 3px;
+}
+
+.history-card {
+  aspect-ratio: 0.76;
+}
+
+
+/* 履歴の手 */
+
+.history-card .hand-art {
+  width: 78%;
+  height: 78%;
+
+  left: 11%;
+  top: 12%;
+}
+
+
+/* =========================================================
+   フッター
+========================================================= */
+
+.game-footer {
+  margin:
+    10px 8px 2px;
+}
+
+
+/* =========================================================
+   iPhone縦画面
+========================================================= */
+
+@media (max-width: 430px) {
+
+  .top-panel {
+    height: 146px;
+  }
+
+  .enemy-art {
+    height: 137px;
+  }
+
+  .instruction h2 {
+    font-size: 12px;
+  }
+
+  .playing-card {
+    aspect-ratio: 0.73;
+  }
+
+  .prediction-button {
+    height: 35px;
+  }
+
+  .next-button {
+    height: 38px;
+  }
+
+  .history-panel {
+    margin-top: 8px;
+  }
+
+  .game-footer {
+    margin-top: 8px;
+  }
+}
