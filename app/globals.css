@@ -1,21 +1,21 @@
 :root {
   --black: #0b0b09;
-  --black-soft: #12110e;
-  --black-card: #171510;
+  --black-2: #11100d;
+  --black-3: #191711;
 
-  --ivory: #eee1c4;
-  --ivory-dark: #d7c5a0;
+  --paper: #eee1c3;
+  --paper-2: #d7c49d;
 
-  --gold: #b49350;
-  --gold-light: #d2b46d;
-  --gold-dark: #67522f;
+  --gold: #a9894c;
+  --gold-light: #d1b36d;
+  --gold-dark: #554329;
 
-  --red: #a7332d;
-  --red-light: #d44a40;
+  --red: #a63831;
+  --red-light: #d34c42;
 
-  --blue: #27363b;
+  --blue: #53666b;
 
-  --text-muted: #a99a7b;
+  --muted: #a49373;
 }
 
 * {
@@ -28,325 +28,861 @@ html {
 
 body {
   margin: 0;
+
   min-height: 100vh;
 
   background:
     radial-gradient(
-      circle at 50% -10%,
-      rgba(116, 91, 49, 0.2),
-      transparent 34%
-    ),
-    radial-gradient(
-      circle at 10% 60%,
-      rgba(80, 61, 32, 0.1),
-      transparent 28%
+      circle at 50% 0%,
+      rgba(125, 96, 49, 0.13),
+      transparent 35%
     ),
     linear-gradient(
       180deg,
-      #12110e 0%,
-      #090908 100%
+      #11100d,
+      #090908 70%
     );
 
-  color: var(--ivory);
+  color: var(--paper);
 
   font-family:
+    Georgia,
     "Times New Roman",
     "Yu Mincho",
     "Hiragino Mincho ProN",
     serif;
 
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing:
+    antialiased;
 }
 
 button {
   font: inherit;
-  -webkit-tap-highlight-color: transparent;
+
+  -webkit-tap-highlight-color:
+    transparent;
 }
 
 button:disabled {
   cursor: default;
 }
 
+/* ========================================
+   PAGE
+======================================== */
+
 .game {
   width: 100%;
+
   max-width: 520px;
+
   min-height: 100vh;
 
   margin: 0 auto;
 
   padding:
-    calc(20px + env(safe-area-inset-top))
-    18px
-    calc(44px + env(safe-area-inset-bottom));
+    calc(
+      18px +
+      env(safe-area-inset-top)
+    )
+    16px
+    calc(
+      42px +
+      env(safe-area-inset-bottom)
+    );
+
+  position: relative;
 
   overflow: hidden;
 
-  position: relative;
+  background:
+    radial-gradient(
+      circle at 50% 11%,
+      rgba(110, 85, 43, 0.16),
+      transparent 25%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(20, 19, 15, 0.96),
+      rgba(9, 9, 8, 0.98)
+    );
 }
 
 .game::before {
   content: "";
 
-  position: fixed;
+  position: absolute;
+
   inset: 0;
 
   pointer-events: none;
 
-  opacity: 0.16;
+  opacity: 0.2;
 
   background-image:
     repeating-linear-gradient(
       0deg,
-      rgba(255, 255, 255, 0.025) 0,
-      rgba(255, 255, 255, 0.025) 1px,
-      transparent 1px,
-      transparent 4px
+      transparent 0,
+      transparent 3px,
+      rgba(
+        255,
+        255,
+        255,
+        0.018
+      )
+      4px
     );
 }
 
-/* =========================
-   HEADER
-========================= */
+.game::after {
+  content: "";
 
-.header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  position: absolute;
 
-  padding-bottom: 14px;
+  width: 260px;
+  height: 260px;
 
-  border-bottom:
-    1px solid rgba(180, 147, 80, 0.55);
+  right: -160px;
+  top: 360px;
+
+  border:
+    1px solid
+    rgba(
+      169,
+      137,
+      76,
+      0.14
+    );
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 0 22px
+    rgba(
+      169,
+      137,
+      76,
+      0.025
+    );
+
+  pointer-events: none;
 }
 
-.logo {
-  font-size: 23px;
-  line-height: 0.95;
+/* ========================================
+   GOLD PAGE FRAME
+======================================== */
 
-  letter-spacing: 0.17em;
+.pageFrame {
+  position: absolute;
 
-  color: var(--ivory);
+  inset:
+    calc(
+      8px +
+      env(safe-area-inset-top)
+    )
+    8px
+    10px;
+
+  border:
+    1px solid
+    rgba(
+      169,
+      137,
+      76,
+      0.38
+    );
+
+  pointer-events: none;
+
+  z-index: 10;
 }
 
-.battleNumber {
-  margin-top: 11px;
+.frameCorner {
+  position: absolute;
 
-  font-size: 10px;
+  color:
+    var(--gold);
 
-  letter-spacing: 0.22em;
-
-  color: var(--gold-light);
+  font-size: 11px;
 }
 
-.score {
-  display: flex;
-  align-items: baseline;
+.f1 {
+  left: -5px;
+  top: -7px;
+}
+
+.f2 {
+  right: -5px;
+  top: -7px;
+}
+
+.f3 {
+  left: -5px;
+  bottom: -7px;
+}
+
+.f4 {
+  right: -5px;
+  bottom: -7px;
+}
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+  min-height: 248px;
+
+  display: grid;
+
+  grid-template-columns:
+    0.86fr
+    1.3fr
+    0.9fr;
+
+  align-items: center;
+
   gap: 5px;
-
-  letter-spacing: 0.12em;
-}
-
-.score span {
-  margin-right: 4px;
-
-  font-size: 9px;
-
-  color: var(--gold-light);
-}
-
-.score strong {
-  font-size: 35px;
-  line-height: 1;
-
-  font-weight: 400;
-
-  color: var(--ivory);
-}
-
-.score small {
-  font-size: 12px;
-
-  color: var(--text-muted);
-}
-
-/* =========================
-   ENEMY
-========================= */
-
-.enemy {
-  padding: 23px 0 12px;
-
-  text-align: center;
-}
-
-.mask {
-  width: 90px;
-  height: 108px;
-
-  margin: 0 auto;
 
   position: relative;
 
-  background:
-    linear-gradient(
-      145deg,
-      #e3d5b8,
-      #bca983
+  border-bottom:
+    1px solid
+    rgba(
+      169,
+      137,
+      76,
+      0.45
     );
-
-  border:
-    2px solid
-    rgba(180, 147, 80, 0.85);
-
-  clip-path:
-    polygon(
-      18% 2%,
-      82% 2%,
-      97% 30%,
-      83% 80%,
-      50% 100%,
-      17% 80%,
-      3% 30%
-    );
-
-  box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.5);
 }
 
-.mask::before {
+.heroBrand {
+  align-self: start;
+
+  padding-top: 13px;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+.brand {
+  font-size:
+    clamp(
+      18px,
+      5.5vw,
+      27px
+    );
+
+  line-height: 0.95;
+
+  letter-spacing: 0.16em;
+}
+
+.tagline {
+  margin-top: 10px;
+
+  font-size: 8px;
+
+  letter-spacing: 0.14em;
+
+  color:
+    var(--paper-2);
+}
+
+.brandMini {
+  margin-top: 31px;
+
+  font-size: 6px;
+
+  line-height: 2.5;
+
+  letter-spacing: 0.28em;
+
+  color:
+    var(--gold);
+}
+
+/* ========================================
+   ENEMY PORTRAIT
+======================================== */
+
+.portrait {
+  height: 225px;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.portrait::after {
   content: "";
 
   position: absolute;
 
   left: 50%;
-  top: 7px;
+  bottom: 4px;
 
-  width: 1px;
-  height: 85px;
-
-  background:
-    rgba(85, 66, 39, 0.4);
-}
-
-.mask::after {
-  content: "✦";
-
-  position: absolute;
-
-  left: 50%;
-  top: 13px;
+  width: 170px;
+  height: 75px;
 
   transform:
     translateX(-50%);
 
-  color: #705d3c;
+  border-radius:
+    50% 50% 8% 8%;
 
-  font-size: 13px;
+  background:
+    linear-gradient(
+      150deg,
+      #27241d,
+      #11100e 65%
+    );
+
+  border-top:
+    1px solid
+    rgba(
+      169,
+      137,
+      76,
+      0.28
+    );
+
+  z-index: 1;
 }
 
-.maskEye {
+.portraitHalo {
   position: absolute;
 
-  top: 40px;
+  width: 155px;
+  height: 155px;
 
-  width: 25px;
-  height: 13px;
+  border:
+    1px solid
+    rgba(
+      169,
+      137,
+      76,
+      0.25
+    );
 
-  background: #11110f;
+  border-radius: 50%;
+
+  top: 28px;
+}
+
+.portraitHalo::before,
+.portraitHalo::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 16px;
+
+  border:
+    1px solid
+    rgba(
+      169,
+      137,
+      76,
+      0.11
+    );
+
+  transform:
+    rotate(45deg);
+}
+
+.portraitHalo::after {
+  transform:
+    rotate(-45deg);
+}
+
+.portraitHalo span {
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background:
+    var(--gold-light);
+}
+
+.portraitHalo span:nth-child(1) {
+  top: -2px;
+  left: 50%;
+}
+
+.portraitHalo span:nth-child(2) {
+  left: 8px;
+  top: 75%;
+}
+
+.portraitHalo span:nth-child(3) {
+  right: 7px;
+  top: 25%;
+}
+
+.hood {
+  position: absolute;
+
+  width: 94px;
+  height: 155px;
+
+  top: 48px;
+
+  background:
+    linear-gradient(
+      150deg,
+      #29261f,
+      #0e0e0c
+    );
+
+  border:
+    1px solid
+    rgba(
+      169,
+      137,
+      76,
+      0.2
+    );
 
   z-index: 2;
+}
+
+.leftHood {
+  left: 12px;
+
+  border-radius:
+    80% 15% 30% 50%;
+
+  transform:
+    rotate(13deg);
+}
+
+.rightHood {
+  right: 12px;
+
+  border-radius:
+    15% 80% 50% 30%;
+
+  transform:
+    rotate(-13deg);
+}
+
+.enemyMask {
+  width: 90px;
+  height: 126px;
+
+  position: relative;
+
+  z-index: 4;
+
+  margin-top: -5px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eee0bf,
+      #b9a37b
+    );
 
   clip-path:
     polygon(
-      0 15%,
-      100% 0,
-      78% 100%,
-      12% 78%
+      17% 0,
+      83% 0,
+      100% 28%,
+      85% 77%,
+      50% 100%,
+      15% 77%,
+      0 28%
+    );
+
+  box-shadow:
+    0 10px 24px
+    rgba(
+      0,
+      0,
+      0,
+      0.55
     );
 }
 
-.maskEye.left {
-  left: 12px;
-}
+.enemyMask::before {
+  content: "";
 
-.maskEye.right {
-  right: 12px;
-
-  transform: scaleX(-1);
-}
-
-.maskLine {
   position: absolute;
 
   left: 50%;
-  top: 58px;
+  top: 6px;
 
-  width: 28px;
-  height: 34px;
+  width: 1px;
+  height: 104px;
+
+  background:
+    rgba(
+      65,
+      51,
+      31,
+      0.35
+    );
+}
+
+.eye {
+  position: absolute;
+
+  width: 27px;
+  height: 14px;
+
+  top: 46px;
+
+  background:
+    #11100d;
+
+  z-index: 3;
+
+  clip-path:
+    polygon(
+      0 18%,
+      100% 0,
+      78% 100%,
+      10% 78%
+    );
+}
+
+.eyeLeft {
+  left: 12px;
+}
+
+.eyeRight {
+  right: 12px;
+
+  transform:
+    scaleX(-1);
+}
+
+.maskNose {
+  position: absolute;
+
+  width: 17px;
+  height: 33px;
+
+  left: 50%;
+  top: 60px;
 
   transform:
     translateX(-50%);
 
   border-left:
-    1px solid rgba(80, 60, 35, 0.45);
+    1px solid
+    rgba(
+      67,
+      51,
+      29,
+      0.4
+    );
 
   border-right:
-    1px solid rgba(80, 60, 35, 0.45);
+    1px solid
+    rgba(
+      67,
+      51,
+      29,
+      0.4
+    );
 
   clip-path:
     polygon(
-      25% 0,
-      75% 0,
+      30% 0,
+      70% 0,
       100% 100%,
       0 100%
     );
 }
 
-.enemyNumber {
-  margin-top: 13px;
+.maskMark {
+  position: absolute;
 
-  font-size: 9px;
+  left: 50%;
+  top: 15px;
 
-  letter-spacing: 0.22em;
+  transform:
+    translateX(-50%);
 
-  color: var(--gold-light);
+  color: #725e3d;
+
+  font-size: 12px;
 }
 
-.enemy h1 {
-  margin: 5px 0 2px;
+.maskCrack {
+  position: absolute;
 
-  font-size: 23px;
+  width: 1px;
+
+  background:
+    rgba(
+      64,
+      48,
+      28,
+      0.38
+    );
+
+  transform-origin: top;
+}
+
+.c1 {
+  height: 35px;
+
+  left: 28px;
+  top: 4px;
+
+  transform:
+    rotate(-18deg);
+}
+
+.c2 {
+  height: 31px;
+
+  right: 25px;
+  top: 8px;
+
+  transform:
+    rotate(22deg);
+}
+
+.c3 {
+  height: 25px;
+
+  left: 38px;
+  bottom: 8px;
+
+  transform:
+    rotate(28deg);
+}
+
+.portraitLeaves {
+  position: absolute;
+
+  z-index: 5;
+
+  color:
+    var(--gold-dark);
+
+  font-size: 38px;
+
+  opacity: 0.75;
+}
+
+.leftLeaves {
+  left: 4px;
+  bottom: 18px;
+
+  transform:
+    rotate(-35deg);
+}
+
+.rightLeaves {
+  right: 2px;
+  top: 23px;
+
+  transform:
+    rotate(145deg);
+}
+
+/* ========================================
+   ENEMY INFO
+======================================== */
+
+.enemyInfo {
+  align-self: stretch;
+
+  padding:
+    21px 0 10px;
+
+  position: relative;
+
+  z-index: 3;
+}
+
+.enemyQuote {
+  font-size: 9px;
+
+  line-height: 1.8;
+
+  letter-spacing: 0.08em;
+
+  color:
+    var(--paper-2);
+}
+
+.enemyPlate {
+  margin-top: 20px;
+
+  padding:
+    10px 7px;
+
+  border:
+    1px solid
+    rgba(
+      169,
+      137,
+      76,
+      0.48
+    );
+
+  background:
+    rgba(
+      12,
+      12,
+      10,
+      0.64
+    );
+}
+
+.enemyPlate span {
+  display: block;
+
+  font-size: 6px;
+
+  letter-spacing: 0.2em;
+
+  color:
+    var(--gold-light);
+}
+
+.enemyPlate strong {
+  display: block;
+
+  margin-top: 5px;
+
+  font-size: 13px;
 
   font-weight: 400;
 
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
 }
 
-.enemy p {
-  margin: 0;
+.enemyPlate small {
+  display: block;
 
-  font-size: 11px;
+  margin-top: 2px;
 
-  letter-spacing: 0.16em;
+  padding-bottom: 6px;
 
-  color: var(--text-muted);
+  border-bottom:
+    1px solid
+    rgba(
+      169,
+      137,
+      76,
+      0.28
+    );
+
+  font-size: 6px;
+
+  letter-spacing: 0.18em;
+
+  color:
+    var(--muted);
 }
 
-/* =========================
+.enemyPlate div {
+  margin-top: 6px;
+
+  font-size: 7px;
+
+  color:
+    var(--paper-2);
+}
+
+/* ========================================
+   BATTLE HEADER
+======================================== */
+
+.battleHeader {
+  height: 57px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content:
+    space-between;
+}
+
+.battlePill {
+  padding:
+    7px 15px;
+
+  border:
+    1px solid
+    rgba(
+      169,
+      137,
+      76,
+      0.65
+    );
+
+  border-radius: 999px;
+
+  font-size: 9px;
+
+  letter-spacing: 0.19em;
+}
+
+.score {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 5px;
+}
+
+.score span {
+  font-size: 7px;
+
+  letter-spacing: 0.24em;
+
+  color:
+    var(--gold-light);
+}
+
+.score strong {
+  font-size: 29px;
+
+  font-weight: 400;
+}
+
+.score small {
+  font-size: 9px;
+
+  color:
+    var(--muted);
+}
+
+/* ========================================
    INSTRUCTION
-========================= */
+======================================== */
 
 .instruction {
-  margin: 9px 0 17px;
-
   text-align: center;
+
+  padding:
+    2px 0 13px;
 }
 
-.instruction h2 {
+.instruction h1 {
   margin: 0;
 
-  font-size: 16px;
-  line-height: 1.7;
+  font-size:
+    clamp(
+      14px,
+      4vw,
+      18px
+    );
 
   font-weight: 400;
 
@@ -354,21 +890,23 @@ button:disabled {
 }
 
 .instruction p {
-  margin: 4px 0 0;
+  margin:
+    5px 0 0;
 
   font-family:
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;
 
-  font-size: 10px;
+  font-size: 9px;
 
-  color: var(--text-muted);
+  color:
+    var(--muted);
 }
 
-/* =========================
+/* ========================================
    PREDICTION
-========================= */
+======================================== */
 
 .prediction {
   display: grid;
@@ -376,77 +914,101 @@ button:disabled {
   grid-template-columns:
     1fr 1fr;
 
-  gap: 10px;
+  gap: 11px;
 
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 .predict {
-  height: 52px;
+  min-height: 50px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
-  gap: 11px;
-
-  border-radius: 7px;
+  gap: 12px;
 
   border:
     1px solid
-    rgba(180, 147, 80, 0.7);
+    rgba(
+      169,
+      137,
+      76,
+      0.65
+    );
 
-  color: var(--ivory);
+  border-radius: 5px;
 
-  font-size: 17px;
+  color:
+    var(--paper);
 
-  letter-spacing: 0.1em;
+  font-size: 16px;
+
+  letter-spacing: 0.12em;
 
   transition:
-    transform 0.16s ease,
-    box-shadow 0.16s ease,
-    border 0.16s ease;
-}
-
-.predict span {
-  font-size: 17px;
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
 .predict.win {
   background:
     linear-gradient(
-      145deg,
-      #22292a,
-      #151918
+      135deg,
+      #242b2c,
+      #151817
     );
 }
 
 .predict.lose {
   background:
     linear-gradient(
-      145deg,
-      #421e1a,
+      135deg,
+      #54251f,
       #281411
     );
 }
 
 .predict.active {
   transform:
-    translateY(-2px);
+    translateY(-3px);
 
   border-color:
     var(--gold-light);
 
   box-shadow:
     0 0 0 2px
-    rgba(210, 180, 109, 0.24),
-    0 9px 20px
-    rgba(0, 0, 0, 0.35);
+    rgba(
+      209,
+      179,
+      109,
+      0.2
+    ),
+    0 10px 22px
+    rgba(
+      0,
+      0,
+      0,
+      0.35
+    );
 }
 
-/* =========================
-   THREE CARDS
-========================= */
+.predictIcon {
+  font-size: 15px;
+}
+
+/* ========================================
+   TABLE
+======================================== */
+
+.table {
+  position: relative;
+
+  padding:
+    3px 0 0;
+}
 
 .cardsArea {
   width: 100%;
@@ -454,39 +1016,61 @@ button:disabled {
   display: grid;
 
   grid-template-columns:
-    repeat(3, minmax(0, 1fr));
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
 
-  gap: 10px;
+  gap: 12px;
 
   position: relative;
 
   perspective: 1200px;
 }
 
+/* ========================================
+   BIG CARDS
+======================================== */
+
 .playingCard {
   width: 100%;
 
-  aspect-ratio: 0.67;
+  aspect-ratio: 0.64;
 
   padding: 0;
 
   border: 0;
 
-  background: transparent;
-
-  perspective: 1000px;
-
-  transition:
-    transform 0.2s ease;
+  background: none;
 
   position: relative;
 
+  perspective: 1000px;
+
   z-index: 1;
+
+  transition:
+    transform 0.25s ease,
+    filter 0.25s ease;
 }
 
 .playingCard.selected {
   transform:
-    translateY(-9px);
+    translateY(-10px)
+    scale(1.035);
+
+  z-index: 5;
+
+  filter:
+    drop-shadow(
+      0 13px 10px
+      rgba(
+        0,
+        0,
+        0,
+        0.45
+      )
+    );
 }
 
 .playingCard:disabled {
@@ -504,11 +1088,11 @@ button:disabled {
 
   transition:
     transform
-    0.75s
+    0.78s
     cubic-bezier(
-      0.2,
+      0.18,
       0.72,
-      0.2,
+      0.22,
       1
     );
 }
@@ -519,15 +1103,14 @@ button:disabled {
     rotateY(180deg);
 }
 
-.cardBack,
-.cardFront {
+.cardFace {
   position: absolute;
 
   inset: 0;
 
   overflow: hidden;
 
-  border-radius: 9px;
+  border-radius: 8px;
 
   backface-visibility:
     hidden;
@@ -536,34 +1119,101 @@ button:disabled {
     hidden;
 
   box-shadow:
-    0 12px 24px
-    rgba(0, 0, 0, 0.45);
+    0 12px 26px
+    rgba(
+      0,
+      0,
+      0,
+      0.52
+    );
 }
 
-/* CARD BACK */
+/* ========================================
+   CARD BACK
+======================================== */
 
 .cardBack {
+  border:
+    1px solid
+    rgba(
+      169,
+      137,
+      76,
+      0.85
+    );
+
   background:
     radial-gradient(
       circle at center,
-      rgba(180, 147, 80, 0.08),
-      transparent 34%
+      rgba(
+        169,
+        137,
+        76,
+        0.09
+      ),
+      transparent 32%
     ),
     linear-gradient(
       145deg,
-      #201e18,
-      #11110e
+      #211f19,
+      #11100e
     );
-
-  border:
-    1px solid
-    rgba(180, 147, 80, 0.8);
 }
 
-.backFrame {
+.backBorder {
   position: absolute;
 
   inset: 7px;
+
+  border:
+    1px solid
+    rgba(
+      169,
+      137,
+      76,
+      0.58
+    );
+
+  border-radius: 4px;
+
+  display: grid;
+
+  place-items: center;
+}
+
+.backBorder::before,
+.backBorder::after {
+  content: "";
+
+  position: absolute;
+
+  width: 68%;
+  height: 68%;
+
+  border:
+    1px solid
+    rgba(
+      169,
+      137,
+      76,
+      0.26
+    );
+
+  transform:
+    rotate(45deg);
+}
+
+.backBorder::after {
+  width: 45%;
+  height: 45%;
+
+  transform:
+    rotate(45deg);
+}
+
+.backDiamond {
+  width: 48px;
+  height: 48px;
 
   display: grid;
 
@@ -571,152 +1221,290 @@ button:disabled {
 
   border:
     1px solid
-    rgba(180, 147, 80, 0.6);
-
-  border-radius: 5px;
-}
-
-.backFrame::before,
-.backFrame::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 8px;
-
-  border:
-    1px solid
-    rgba(180, 147, 80, 0.2);
+    rgba(
+      169,
+      137,
+      76,
+      0.3
+    );
 
   transform:
-    rotate(45deg)
-    scale(0.7);
-}
-
-.backFrame::after {
-  transform:
-    rotate(-45deg)
-    scale(0.7);
+    rotate(45deg);
 }
 
 .backStar {
-  color: var(--gold);
+  color:
+    var(--gold-light);
 
-  font-size: 29px;
+  font-size: 22px;
+
+  transform:
+    rotate(-45deg);
 
   text-shadow:
-    0 0 18px
-    rgba(180, 147, 80, 0.5);
+    0 0 17px
+    rgba(
+      209,
+      179,
+      109,
+      0.5
+    );
 }
 
-/* CARD FRONT */
+.cornerOrnament {
+  position: absolute;
+
+  color:
+    var(--gold);
+
+  font-size: 12px;
+}
+
+.cornerOrnament.tl {
+  left: 3px;
+  top: 1px;
+}
+
+.cornerOrnament.tr {
+  right: 3px;
+  top: 1px;
+
+  transform:
+    scaleX(-1);
+}
+
+.cornerOrnament.bl {
+  left: 3px;
+  bottom: 1px;
+
+  transform:
+    scaleY(-1);
+}
+
+.cornerOrnament.br {
+  right: 3px;
+  bottom: 1px;
+
+  transform:
+    scale(-1);
+}
+
+.backTiny {
+  position: absolute;
+
+  bottom: 7px;
+
+  font-size: 5px;
+
+  letter-spacing: 0.25em;
+
+  color:
+    rgba(
+      209,
+      179,
+      109,
+      0.55
+    );
+}
+
+/* ========================================
+   CARD FRONT
+======================================== */
 
 .cardFront {
   transform:
     rotateY(180deg);
 
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(77, 99, 103, 0.2),
-      transparent 38%
-    ),
-    linear-gradient(
-      145deg,
-      #f2e7ce,
-      #dfcfad
-    );
-
-  color: #171510;
-
   border:
     1px solid
-    #917a50;
+    #8f7951;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f0e5ca,
+      #dac7a2
+    );
+
+  color:
+    #181611;
 }
 
-.cardFront::before {
-  content: "";
+.paperTexture {
+  position: absolute;
 
+  inset: 0;
+
+  opacity: 0.18;
+
+  background:
+    radial-gradient(
+      circle at 20% 30%,
+      #765d35 0 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 70% 65%,
+      #765d35 0 1px,
+      transparent 2px
+    );
+
+  background-size:
+    29px 31px,
+    37px 41px;
+}
+
+.frontFrame {
   position: absolute;
 
   inset: 6px;
 
   border:
     1px solid
-    rgba(112, 91, 54, 0.55);
+    rgba(
+      102,
+      80,
+      46,
+      0.55
+    );
 
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
-.cardFront::after {
-  content: "✦";
+.frontFrame::before {
+  content: "";
 
   position: absolute;
 
-  right: 9px;
-  top: 8px;
+  inset: 5px;
 
-  color: #7c6949;
-
-  font-size: 9px;
+  border:
+    1px solid
+    rgba(
+      102,
+      80,
+      46,
+      0.16
+    );
 }
 
-.corner {
+.frontCorner {
   position: absolute;
 
-  left: 10px;
-  top: 9px;
+  z-index: 5;
 
   display: flex;
 
   flex-direction: column;
 
   align-items: center;
-
-  z-index: 2;
 }
 
-.corner strong {
-  font-size: 23px;
+.frontCorner.top {
+  top: 9px;
+  left: 10px;
+}
+
+.frontCorner.bottom {
+  right: 10px;
+  bottom: 9px;
+
+  transform:
+    rotate(180deg);
+}
+
+.frontCorner strong {
+  font-size:
+    clamp(
+      19px,
+      5.8vw,
+      27px
+    );
+
   line-height: 0.85;
 
   font-weight: 500;
 }
 
-.corner span {
-  margin-top: 5px;
+.frontCorner span {
+  margin-top: 4px;
+
+  font-size: 7px;
+}
+
+.cardStar {
+  position: absolute;
+
+  color:
+    rgba(
+      84,
+      104,
+      109,
+      0.75
+    );
 
   font-size: 8px;
 }
 
-.handIllustration {
-  position: absolute;
-
-  inset: 18% 5% 17%;
-
-  display: grid;
-
-  place-items: center;
-
-  font-family:
-    sans-serif;
-
-  font-size:
-    clamp(
-      44px,
-      13vw,
-      66px
-    );
-
-  filter:
-    grayscale(1)
-    contrast(1.2);
-
-  transform:
-    rotate(-5deg);
+.cardStar.one {
+  top: 31px;
+  right: 17px;
 }
 
-.handName {
+.cardStar.two {
+  bottom: 31px;
+  left: 17px;
+}
+
+.handCircle {
+  position: absolute;
+
+  width: 76%;
+  aspect-ratio: 1;
+
+  left: 12%;
+  top: 22%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(
+      76,
+      101,
+      107,
+      0.58
+    );
+
+  overflow: hidden;
+}
+
+.handSvg {
+  width: 85%;
+  height: 90%;
+
+  overflow: visible;
+}
+
+.handSvg path {
+  stroke:
+    #1d1b17;
+
+  stroke-width: 3;
+
+  stroke-linecap: round;
+
+  stroke-linejoin: round;
+
+  vector-effect:
+    non-scaling-stroke;
+}
+
+.cardEnglish {
   position: absolute;
 
   left: 0;
@@ -725,21 +1513,31 @@ button:disabled {
 
   text-align: center;
 
-  font-size: 8px;
+  font-size: 7px;
 
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
 }
 
-/* =========================
-   WIN / LOSE OVER CARD
-========================= */
+/* ========================================
+   VERDICT
+   選んだカード上だけに表示
+======================================== */
 
-.verdict {
+.cardVerdict {
   position: absolute;
 
-  inset: 0;
+  top: 0;
 
-  z-index: 20;
+  width:
+    calc(
+      (
+        100% - 24px
+      ) / 3
+    );
+
+  aspect-ratio: 0.64;
+
+  z-index: 30;
 
   display: flex;
 
@@ -751,21 +1549,41 @@ button:disabled {
   pointer-events: none;
 
   animation:
-    verdictAppear
-    0.4s ease both;
+    verdictIn
+    0.42s
+    0.72s
+    both;
+}
+
+.cardVerdict.card-0 {
+  left: 0;
+}
+
+.cardVerdict.card-1 {
+  left:
+    calc(
+      (
+        (
+          100% - 24px
+        ) / 3
+      ) + 12px
+    );
+}
+
+.cardVerdict.card-2 {
+  right: 0;
 }
 
 .verdictWord {
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+  position: relative;
+
+  z-index: 2;
 
   font-size:
     clamp(
-      50px,
-      16vw,
-      75px
+      39px,
+      11vw,
+      57px
     );
 
   line-height: 0.9;
@@ -774,177 +1592,245 @@ button:disabled {
 
   font-style: italic;
 
-  letter-spacing: 0.08em;
+  letter-spacing: -0.04em;
 
-  color: var(--gold-light);
+  color:
+    var(--gold-light);
 
   text-shadow:
-    0 4px 5px #000,
-    0 8px 18px #000,
+    0 4px 5px
+    #000,
+    0 9px 18px
+    #000,
     0 0 18px
-    rgba(180, 147, 80, 0.55);
+    rgba(
+      209,
+      179,
+      109,
+      0.45
+    );
+
+  transform:
+    scaleX(0.92);
 }
 
-.verdict.lose
+.cardVerdict.lose
 .verdictWord {
-  color: var(--red-light);
+  color:
+    var(--red-light);
 }
 
-.verdict.draw
+.cardVerdict.draw
 .verdictWord {
-  color: var(--ivory);
+  color:
+    var(--paper);
 }
 
-.verdictDetail {
-  margin-top: 10px;
+.verdictRibbon {
+  min-width: 116%;
 
-  min-width: 140px;
+  margin-top: 11px;
 
   padding:
-    7px 15px;
+    7px 6px;
 
-  background:
-    rgba(13, 13, 11, 0.94);
+  position: relative;
+
+  z-index: 4;
 
   border:
     1px solid
     var(--gold-dark);
 
-  color: var(--ivory);
+  background:
+    rgba(
+      13,
+      12,
+      10,
+      0.96
+    );
+
+  color:
+    var(--paper);
 
   text-align: center;
+
+  font-size: 10px;
+
+  white-space: nowrap;
+
+  box-shadow:
+    0 7px 17px
+    rgba(
+      0,
+      0,
+      0,
+      0.5
+    );
+}
+
+.verdictRibbon span {
+  display: block;
+
+  margin-top: 2px;
 
   font-family:
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;
 
-  font-size: 11px;
-  line-height: 1.45;
+  font-size: 7px;
 
-  box-shadow:
-    0 8px 22px
-    rgba(0, 0, 0, 0.45);
+  color:
+    var(--paper-2);
 }
 
-@keyframes verdictAppear {
+@keyframes verdictIn {
   from {
     opacity: 0;
 
     transform:
-      scale(1.18);
+      translateY(-6px)
+      scale(1.2);
   }
 
   to {
     opacity: 1;
 
     transform:
-      scale(1);
+      translateY(-10px)
+      scale(1.035);
   }
 }
 
-/* =========================
+/* ========================================
    REVEAL
-========================= */
+======================================== */
 
 .revealButton {
   width: 100%;
 
-  height: 51px;
+  min-height: 48px;
 
-  margin-top: 19px;
-
-  border-radius: 6px;
+  margin-top: 18px;
 
   border:
     1px solid
     var(--gold);
 
+  border-radius: 5px;
+
   background:
     linear-gradient(
       145deg,
-      #efe3c8,
-      #d6c39e
+      #eee0c0,
+      #d2bd93
     );
 
-  color: #171510;
+  color:
+    #171510;
 
-  font-size: 14px;
+  font-size: 13px;
 
   font-weight: 700;
 
   letter-spacing: 0.1em;
 
-  box-shadow:
-    0 9px 22px
-    rgba(0, 0, 0, 0.3);
-
   transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
+    transform 0.15s ease,
+    opacity 0.15s ease;
 }
 
-.revealButton:not(:disabled):active {
+.revealButton:not(
+  :disabled
+):active {
   transform:
     scale(0.98);
 }
 
 .revealButton:disabled {
-  opacity: 0.28;
+  opacity: 0.25;
 }
 
-/* =========================
+/* ========================================
    RESULT
-========================= */
+======================================== */
 
-.battleResult {
+.resultArea {
   margin-top: 20px;
 
-  padding: 17px 0 3px;
+  padding-top: 15px;
 
   border-top:
     1px solid
-    rgba(180, 147, 80, 0.45);
+    rgba(
+      169,
+      137,
+      76,
+      0.38
+    );
 
   text-align: center;
 }
 
-.hands {
+.versus {
   display: flex;
 
   align-items: center;
   justify-content: center;
 
-  gap: 15px;
+  gap: 7px;
 
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
+  font-size: 10px;
 
-  font-size: 13px;
-
-  color: var(--ivory-dark);
+  color:
+    var(--paper-2);
 }
 
-.hands b {
-  color: var(--gold);
+.versus b {
+  margin: 0 4px;
 
-  font-family:
-    Georgia,
-    serif;
+  font-size: 8px;
 
-  font-size: 11px;
+  letter-spacing: 0.14em;
+
+  color:
+    var(--gold-light);
 }
 
-.winner {
-  margin-top: 10px;
+.smallHand {
+  width: 31px;
+  height: 35px;
 
-  color: var(--red-light);
+  display: flex;
 
-  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+}
 
-  font-weight: 700;
+.smallHand
+.handSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.smallHand
+.handSvg path {
+  stroke:
+    var(--paper);
+
+  stroke-width: 2;
+}
+
+.winnerText {
+  margin-top: 6px;
+
+  color:
+    var(--red-light);
+
+  font-size: 17px;
+
+  font-weight: 600;
 
   letter-spacing: 0.08em;
 }
@@ -952,172 +1838,300 @@ button:disabled {
 .nextButton {
   width: 100%;
 
-  height: 49px;
+  min-height: 49px;
 
-  margin-top: 16px;
+  margin-top: 14px;
 
-  border-radius: 6px;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 13px;
 
   border:
     1px solid
-    rgba(180, 147, 80, 0.8);
+    rgba(
+      169,
+      137,
+      76,
+      0.68
+    );
+
+  border-radius: 5px;
 
   background:
-    rgba(22, 21, 17, 0.85);
+    rgba(
+      18,
+      17,
+      14,
+      0.8
+    );
 
-  color: var(--ivory);
+  color:
+    var(--paper);
 
   font-size: 14px;
 
-  font-weight: 700;
+  font-weight: 600;
 
-  letter-spacing: 0.09em;
+  letter-spacing: 0.08em;
 }
 
-.nextButton.final {
+.nextButton span {
+  color:
+    var(--gold-light);
+
+  font-size: 18px;
+}
+
+.finalButton {
+  border-color:
+    var(--red-light);
+
   background:
     linear-gradient(
       145deg,
-      #6e271f,
-      #321512
+      #55221d,
+      #241210
     );
-
-  border-color:
-    var(--red-light);
 }
 
-/* =========================
-   COLLECTED 9 CARDS
-========================= */
+/* ========================================
+   HISTORY
+======================================== */
 
-.collection {
-  margin-top: 28px;
+.history {
+  margin-top: 29px;
 
   padding-top: 14px;
 
   border-top:
     1px solid
-    rgba(180, 147, 80, 0.42);
+    rgba(
+      169,
+      137,
+      76,
+      0.42
+    );
 }
 
-.collectionTitle {
-  font-size: 11px;
+.historyHeading {
+  font-size: 10px;
 
   letter-spacing: 0.12em;
 
-  color: var(--gold-light);
+  color:
+    var(--gold-light);
 }
 
-.miniCards {
+.historyCards {
   display: grid;
 
   grid-template-columns:
-    repeat(9, 1fr);
+    repeat(
+      9,
+      minmax(0, 1fr)
+    );
 
   gap: 4px;
 
   margin-top: 10px;
 }
 
-.miniCard {
-  aspect-ratio: 0.67;
+.historyCard {
+  aspect-ratio: 0.64;
 
-  display: grid;
+  position: relative;
 
-  place-items: center;
+  overflow: hidden;
 
-  border-radius: 3px;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
 
   border:
     1px solid
-    rgba(180, 147, 80, 0.55);
+    rgba(
+      169,
+      137,
+      76,
+      0.55
+    );
 
-  background:
-    #151410;
+  border-radius: 3px;
 
-  color: #766849;
-
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
-
-  font-size: 9px;
-}
-
-.miniCard.obtained {
   background:
     linear-gradient(
       145deg,
-      #efe3c8,
-      #d7c5a1
+      #1c1a15,
+      #11100e
     );
 
-  color: #171510;
-
-  font-size: 16px;
-
-  box-shadow:
-    0 4px 10px
-    rgba(0, 0, 0, 0.3);
-
-  animation:
-    miniAppear
-    0.35s ease both;
+  color:
+    rgba(
+      209,
+      179,
+      109,
+      0.55
+    );
 }
 
-@keyframes miniAppear {
-  from {
-    opacity: 0;
+.historyNumber {
+  position: absolute;
 
-    transform:
-      translateY(-8px)
-      scale(1.12);
-  }
+  top: 4px;
+  left: 5px;
 
-  to {
-    opacity: 1;
-
-    transform:
-      translateY(0)
-      scale(1);
-  }
+  font-size: 6px;
 }
 
-/* =========================
-   SMALL IPHONE
-========================= */
+.miniStar {
+  font-size: 10px;
+}
+
+.historyCard.obtained {
+  background:
+    linear-gradient(
+      145deg,
+      #eee1c4,
+      #d6c29b
+    );
+
+  color:
+    #171510;
+}
+
+.historyCard
+.handSvg {
+  width: 77%;
+  height: 78%;
+}
+
+.historyCard
+.handSvg path {
+  stroke:
+    #171510;
+
+  stroke-width: 1.6;
+}
+
+.miniCode {
+  position: absolute;
+
+  left: 4px;
+  top: 3px;
+
+  z-index: 2;
+
+  font-size: 7px;
+}
+
+/* ========================================
+   FOOTER
+======================================== */
+
+footer {
+  margin-top: 30px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr auto 1fr;
+
+  align-items: center;
+
+  gap: 12px;
+
+  font-size: 6px;
+
+  letter-spacing: 0.35em;
+
+  color:
+    var(--gold);
+}
+
+footer span {
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(
+        169,
+        137,
+        76,
+        0.6
+      )
+    );
+}
+
+footer span:last-child {
+  transform:
+    scaleX(-1);
+}
+
+/* ========================================
+   SMALL iPHONE
+======================================== */
 
 @media (
   max-width: 380px
 ) {
   .game {
-    padding-left: 13px;
-    padding-right: 13px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .hero {
+    min-height: 220px;
+  }
+
+  .portrait {
+    height: 205px;
+  }
+
+  .enemyMask {
+    width: 78px;
+    height: 110px;
+  }
+
+  .hood {
+    width: 80px;
+    height: 140px;
   }
 
   .cardsArea {
-    gap: 7px;
+    gap: 8px;
   }
 
-  .logo {
-    font-size: 20px;
+  .cardVerdict {
+    width:
+      calc(
+        (
+          100% - 16px
+        ) / 3
+      );
   }
 
-  .enemy {
-    padding-top: 18px;
+  .cardVerdict.card-1 {
+    left:
+      calc(
+        (
+          (
+            100% - 16px
+          ) / 3
+        ) + 8px
+      );
   }
 
-  .mask {
-    width: 78px;
-    height: 94px;
+  .prediction {
+    gap: 8px;
   }
 
-  .enemy h1 {
-    font-size: 20px;
-  }
-
-  .instruction h2 {
+  .predict {
     font-size: 14px;
   }
 }
