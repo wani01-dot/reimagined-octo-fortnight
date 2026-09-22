@@ -2051,3 +2051,483 @@ button {
     font-size: 14px;
   }
 }
+/* =========================================================
+   FINAL TUNING 01
+   基準画像へさらに寄せる
+========================================================= */
+
+/* ---------- 上部をコンパクト化 ---------- */
+
+.top-panel {
+  height: 184px;
+  padding-top: 8px;
+
+  grid-template-columns:
+    0.92fr 1.34fr 0.9fr;
+}
+
+.title-block h1 {
+  font-size: clamp(22px, 6.7vw, 32px);
+  line-height: 0.88;
+}
+
+.title-block p {
+  margin-top: 7px;
+}
+
+.tiny-copy {
+  top: 96px;
+}
+
+.compass {
+  top: 108px;
+  left: 41px;
+
+  width: 56px;
+  height: 56px;
+}
+
+
+/* ---------- 敵を少し小さく ---------- */
+
+.enemy-art {
+  height: 170px;
+}
+
+.enemy-circle {
+  width: 128px;
+  height: 128px;
+
+  top: 13px;
+}
+
+.enemy-mask {
+  width: 77px;
+  height: 112px;
+
+  top: 28px;
+}
+
+.enemy-cloak {
+  height: 137px;
+}
+
+.cloak-left,
+.cloak-right {
+  width: 91px;
+}
+
+.enemy-copy {
+  padding-top: 10px;
+}
+
+.enemy-copy blockquote {
+  font-size: 8px;
+  line-height: 1.55;
+}
+
+.enemy-name-card {
+  margin-top: 11px;
+
+  padding:
+    7px 7px 6px;
+}
+
+.enemy-name-card strong {
+  font-size: 14px;
+}
+
+
+/* ---------- BATTLE部分を上へ詰める ---------- */
+
+.battle-panel {
+  padding-top: 7px;
+}
+
+.battle-meta {
+  height: 38px;
+}
+
+.battle-number {
+  padding:
+    6px 14px;
+
+  font-size: 8px;
+}
+
+.score-box strong {
+  font-size: 28px;
+}
+
+
+/* ---------- 説明文 ---------- */
+
+.instruction {
+  padding:
+    5px 0 8px;
+}
+
+.instruction h2 {
+  max-width: 94%;
+
+  margin: 0 auto;
+
+  font-size: clamp(13px, 4vw, 18px);
+
+  line-height: 1.5;
+}
+
+.instruction p {
+  margin-top: 2px;
+}
+
+
+/* ---------- 勝敗予想 ---------- */
+
+.prediction-row {
+  gap: 11px;
+
+  margin:
+    0 auto 11px;
+}
+
+.prediction-button {
+  height: 43px;
+
+  font-size: 15px;
+}
+
+
+/* =========================================================
+   メインカード
+========================================================= */
+
+.main-cards {
+  gap: 8px;
+
+  padding:
+    0 2px;
+}
+
+/*
+  以前より少し横長にする。
+  基準画像のトランプ寄り比率。
+*/
+
+.playing-card {
+  aspect-ratio: 0.68;
+}
+
+.card-face {
+  border-radius: 7px;
+}
+
+/* 選択時も大きく動かしすぎない */
+
+.playing-card.is-selected {
+  transform:
+    translateY(-4px)
+    scale(1.015);
+}
+
+
+/* =========================================================
+   表カード
+========================================================= */
+
+.color-disc {
+  width: 70%;
+
+  left: 15%;
+
+  top: 25%;
+}
+
+.main-hand {
+  width: 78%;
+  height: 62%;
+
+  left: 11%;
+
+  top: 18%;
+}
+
+/* 手線画を少し細く見せる */
+
+.main-hand .hand-art {
+  transform: scale(0.97);
+}
+
+
+/* カード下部文字を基準画像寄りに */
+
+.bottom-card-name {
+  bottom: 14%;
+
+  font-size: 8px;
+
+  letter-spacing: 0.19em;
+}
+
+.point-rule {
+  bottom: 10.7%;
+}
+
+.point-name {
+  bottom: 7.2%;
+}
+
+
+/* =========================================================
+   WIN / LOSE / DRAW
+========================================================= */
+
+.result-overlay {
+  width:
+    calc(
+      (100% - 20px) / 3
+    );
+
+  aspect-ratio: 0.68;
+
+  top: -4px;
+
+  justify-content: center;
+}
+
+.position-0 {
+  left: 2px;
+}
+
+.position-1 {
+  left:
+    calc(
+      ((100% - 20px) / 3)
+      + 10px
+    );
+}
+
+.position-2 {
+  right: 2px;
+}
+
+
+/*
+  ここ重要。
+  今の巨大WINを基準画像くらいへ縮小。
+*/
+
+.result-word {
+  margin-top: 10px;
+
+  font-size:
+    clamp(
+      32px,
+      9.6vw,
+      47px
+    );
+
+  letter-spacing: -0.055em;
+
+  text-shadow:
+    0 2px 0 #5d4524,
+    0 5px 8px rgba(0,0,0,0.72),
+    0 0 10px rgba(198,164,94,0.2);
+}
+
+.result-overlay.lose
+.result-word {
+  text-shadow:
+    0 2px 0 #4d1714,
+    0 5px 8px rgba(0,0,0,0.72);
+}
+
+
+/* 横の星も小さく */
+
+.result-star {
+  font-size: 9px;
+}
+
+.result-star.left {
+  left: -15px;
+}
+
+.result-star.right {
+  right: -15px;
+}
+
+
+/* ---------- 予言結果の黒帯 ---------- */
+
+.prediction-result {
+  min-width: 101%;
+  max-width: 108%;
+
+  margin-top: 8px;
+
+  padding:
+    5px 5px;
+
+  gap: 6px;
+
+  box-shadow:
+    0 4px 8px
+    rgba(0,0,0,0.5);
+}
+
+.prediction-result strong {
+  font-size: 8px;
+}
+
+.prediction-result span {
+  font-size: 7px;
+}
+
+
+/* =========================================================
+   結果後
+========================================================= */
+
+/*
+  「あなた 手 VS 手 仮面」は
+  基準画像にはないので非表示。
+*/
+
+.actual-result {
+  display: none;
+}
+
+.after-result {
+  padding-top: 11px;
+}
+
+.next-button {
+  height: 48px;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   履歴
+========================================================= */
+
+.history-panel {
+  margin-top: 15px;
+
+  padding-top: 11px;
+}
+
+.history-panel h3 {
+  margin-bottom: 8px;
+}
+
+.history-cards {
+  gap: 3px;
+}
+
+/*
+  履歴カードもメインカードと
+  同じ比率へ近づける。
+*/
+
+.history-card {
+  aspect-ratio: 0.68;
+}
+
+
+/* =========================================================
+   フッター
+========================================================= */
+
+.game-footer {
+  margin-top: 20px;
+}
+
+
+/* =========================================================
+   iPhone小型画面
+========================================================= */
+
+@media (max-width: 390px) {
+
+  .top-panel {
+    height: 174px;
+  }
+
+  .enemy-art {
+    height: 162px;
+  }
+
+  .enemy-circle {
+    width: 119px;
+    height: 119px;
+  }
+
+  .enemy-mask {
+    width: 72px;
+    height: 105px;
+  }
+
+  .enemy-cloak {
+    height: 130px;
+  }
+
+  .cloak-left,
+  .cloak-right {
+    width: 85px;
+  }
+
+  .title-block h1 {
+    font-size: 21px;
+  }
+
+  .tiny-copy {
+    top: 91px;
+  }
+
+  .compass {
+    width: 51px;
+    height: 51px;
+
+    top: 105px;
+  }
+
+  .enemy-name-card strong {
+    font-size: 13px;
+  }
+
+  .instruction h2 {
+    font-size: 13px;
+  }
+
+  .prediction-button {
+    height: 41px;
+
+    font-size: 14px;
+  }
+
+  .main-cards {
+    gap: 7px;
+  }
+
+  .result-overlay {
+    width:
+      calc(
+        (100% - 18px) / 3
+      );
+  }
+
+  .position-1 {
+    left:
+      calc(
+        ((100% - 18px) / 3)
+        + 9px
+      );
+  }
+
+  .result-word {
+    font-size: 32px;
+  }
+}
