@@ -1,28 +1,31 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 const HANDS = {
   rock: {
     code: "R",
-    number: "01",
+    no: "01",
     name: "ROCK",
     jp: "グー",
     point: 1,
+    theme: "rock",
   },
   scissors: {
     code: "S",
-    number: "02",
+    no: "02",
     name: "SCISSORS",
     jp: "チョキ",
     point: 2,
+    theme: "scissors",
   },
   paper: {
     code: "P",
-    number: "05",
+    no: "05",
     name: "PAPER",
     jp: "パー",
     point: 5,
+    theme: "paper",
   },
 };
 
@@ -40,355 +43,268 @@ const BEATS = {
 
 function randomHand() {
   return HAND_KEYS[
-    Math.floor(
-      Math.random() *
-        HAND_KEYS.length
-    )
+    Math.floor(Math.random() * HAND_KEYS.length)
   ];
 }
 
-/* =========================
+/* =========================================
    手の線画
-========================= */
+========================================= */
 
-function HandDrawing({
-  hand,
-}) {
-  if (hand === "rock") {
-    return (
-      <svg
-        className="handSvg"
-        viewBox="0 0 180 230"
-        aria-hidden="true"
-      >
-        <path
-          d="
-            M55 199
-            C48 180 42 160 41 140
-            C40 125 43 113 49 106
-            C54 100 61 98 68 102
-            L68 75
-            C68 64 73 57 81 57
-            C89 57 94 63 94 74
-            L94 96
-            L97 61
-            C98 50 104 44 112 45
-            C120 46 124 52 123 63
-            L120 97
-            L125 68
-            C127 58 133 53 141 55
-            C149 57 152 64 150 74
-            L144 109
-            C153 104 161 107 165 114
-            C170 124 164 137 157 148
-            C150 160 143 171 139 185
-            L136 205
-          "
-          fill="none"
-        />
-
-        <path
-          d="
-            M49 106
-            C56 112 65 116 76 116
-            C91 116 101 110 105 100
-          "
-          fill="none"
-        />
-
-        <path
-          d="
-            M68 102
-            C71 112 77 119 87 122
-          "
-          fill="none"
-        />
-
-        <path
-          d="
-            M94 96
-            C96 108 102 115 112 117
-          "
-          fill="none"
-        />
-
-        <path
-          d="
-            M120 97
-            C120 107 126 113 137 115
-          "
-          fill="none"
-        />
-
-        <path
-          d="
-            M60 135
-            C82 144 110 145 145 134
-          "
-          fill="none"
-        />
-
-        <path
-          d="
-            M69 153
-            C88 160 108 160 129 154
-          "
-          fill="none"
-        />
-      </svg>
-    );
-  }
-
-  if (hand === "scissors") {
-    return (
-      <svg
-        className="handSvg"
-        viewBox="0 0 180 230"
-        aria-hidden="true"
-      >
-        <path
-          d="
-            M55 207
-            C48 187 44 167 45 147
-            C46 130 50 116 57 107
-            L70 93
-            L65 54
-            C63 42 68 34 77 33
-            C87 32 92 39 94 50
-            L101 91
-            L112 42
-            C115 30 122 25 131 28
-            C140 31 143 39 140 50
-            L127 103
-            L142 92
-            C151 85 161 88 166 96
-            C172 105 167 115 158 123
-            L144 136
-            C137 143 134 154 135 167
-            L139 205
-          "
-          fill="none"
-        />
-
-        <path
-          d="
-            M70 93
-            C76 102 86 108 99 108
-            C111 108 121 105 127 103
-          "
-          fill="none"
-        />
-
-        <path
-          d="
-            M58 121
-            C72 132 88 137 107 136
-          "
-          fill="none"
-        />
-
-        <path
-          d="
-            M63 148
-            C83 157 104 159 127 153
-          "
-          fill="none"
-        />
-
-        <path
-          d="
-            M78 33
-            C81 46 84 61 86 77
-          "
-          fill="none"
-        />
-
-        <path
-          d="
-            M131 28
-            C128 43 124 58 121 73
-          "
-          fill="none"
-        />
-      </svg>
-    );
-  }
-
+function RockHand() {
   return (
     <svg
-      className="handSvg"
-      viewBox="0 0 180 230"
+      viewBox="0 0 220 300"
+      className="hand-art"
       aria-hidden="true"
     >
-      <path
-        d="
-          M55 208
-          C49 189 45 169 45 149
-          L45 82
-          C45 70 51 63 60 63
-          C69 63 74 70 74 81
-          L74 106
-          L74 49
-          C74 37 80 30 89 30
-          C98 30 103 37 103 49
-          L103 101
-          L105 43
-          C105 31 111 25 120 26
-          C129 27 134 34 133 46
-          L130 104
-          L134 58
-          C135 47 141 41 149 43
-          C158 45 161 52 160 63
-          L155 124
-          C154 141 149 153 140 164
-          C134 172 132 184 134 207
-        "
+      <g
         fill="none"
-      />
+        stroke="currentColor"
+        strokeWidth="2.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M78 268 C72 239 67 217 66 194 C64 171 66 154 72 142" />
+        <path d="M145 270 C144 245 146 224 151 204 C156 185 162 170 162 154" />
 
-      <path
-        d="
-          M45 106
-          C54 101 64 102 74 110
-        "
-        fill="none"
-      />
+        <path d="M72 142 C61 131 57 118 61 106 C65 94 76 90 87 96" />
+        <path d="M87 96 C78 82 82 67 93 61 C105 55 118 61 123 74" />
+        <path d="M123 74 C126 60 138 53 149 58 C160 63 163 75 158 89" />
+        <path d="M158 89 C170 86 181 94 182 106 C183 119 174 129 162 134" />
 
-      <path
-        d="
-          M74 106
-          C83 112 92 113 103 108
-        "
-        fill="none"
-      />
+        <path d="M72 142 C78 131 88 125 101 126 C115 127 123 137 122 150" />
+        <path d="M122 150 C124 137 134 128 147 129 C160 130 168 141 166 154" />
 
-      <path
-        d="
-          M103 101
-          C112 108 121 109 130 104
-        "
-        fill="none"
-      />
+        <path d="M75 111 C88 108 101 113 107 123" />
+        <path d="M94 78 C108 77 119 83 124 94" />
+        <path d="M130 73 C142 75 151 83 153 95" />
 
-      <path
-        d="
-          M130 104
-          C140 110 148 111 156 107
-        "
-        fill="none"
-      />
+        <path d="M82 145 C92 154 105 157 118 154" />
+        <path d="M126 151 C137 157 149 158 159 153" />
 
-      <path
-        d="
-          M62 137
-          C82 148 106 151 137 143
-        "
-        fill="none"
-      />
+        <path d="M79 167 C99 177 126 178 151 167" />
+        <path d="M82 191 C101 200 124 201 145 193" />
+        <path d="M86 218 C103 224 123 225 140 220" />
 
-      <path
-        d="
-          M67 159
-          C86 168 106 170 126 164
-        "
-        fill="none"
-      />
+        <path d="M91 106 C94 112 95 118 94 124" />
+        <path d="M112 82 C115 89 116 96 115 103" />
+        <path d="M143 82 C145 88 145 95 143 101" />
+
+        <path d="M90 159 C94 164 99 166 104 167" />
+        <path d="M132 160 C137 164 143 165 148 164" />
+
+        <path d="M91 186 C99 190 106 191 113 190" />
+        <path d="M119 191 C127 192 134 190 140 186" />
+      </g>
     </svg>
   );
 }
 
-/* =========================
-   カード装飾
-========================= */
+function ScissorsHand() {
+  return (
+    <svg
+      viewBox="0 0 220 300"
+      className="hand-art"
+      aria-hidden="true"
+    >
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M79 270 C75 246 71 224 72 202 C73 180 78 163 86 151" />
+        <path d="M149 270 C146 246 145 226 148 207 C151 190 157 174 166 160" />
+
+        <path d="M88 151 C77 143 70 133 70 122 C70 110 78 101 90 100" />
+
+        <path d="M90 100 L78 46 C75 31 81 20 93 18 C105 16 113 24 116 39 L124 94" />
+
+        <path d="M124 94 L139 35 C143 20 153 14 165 18 C177 22 181 33 177 48 L158 115" />
+
+        <path d="M158 115 C169 104 182 104 190 113 C198 122 196 134 186 143 L166 160" />
+
+        <path d="M89 101 C97 113 108 120 122 122" />
+        <path d="M122 122 C136 124 148 121 158 115" />
+
+        <path d="M88 151 C102 159 117 161 132 157" />
+        <path d="M132 157 C143 153 154 153 164 159" />
+
+        <path d="M91 176 C108 184 128 185 147 179" />
+        <path d="M91 201 C108 209 127 210 144 204" />
+        <path d="M92 229 C108 234 125 235 140 231" />
+
+        <path d="M85 51 C94 49 103 51 112 57" />
+        <path d="M145 46 C154 48 163 52 171 59" />
+
+        <path d="M89 73 C98 71 107 74 116 80" />
+        <path d="M139 70 C148 72 157 77 165 84" />
+
+        <path d="M99 129 C104 135 111 139 119 140" />
+        <path d="M127 140 C135 140 142 137 148 132" />
+      </g>
+    </svg>
+  );
+}
+
+function PaperHand() {
+  return (
+    <svg
+      viewBox="0 0 220 300"
+      className="hand-art"
+      aria-hidden="true"
+    >
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M76 272 C72 246 68 221 69 196 C70 173 75 155 80 140" />
+        <path d="M151 272 C149 246 150 225 155 204 C160 184 166 166 169 145" />
+
+        <path d="M80 140 L68 84 C65 70 70 60 81 58 C92 56 100 64 102 78 L106 111" />
+
+        <path d="M106 111 L105 46 C105 31 112 22 124 22 C136 22 143 31 143 46 L143 108" />
+
+        <path d="M143 108 L149 55 C151 41 159 34 170 35 C181 36 187 46 185 60 L178 120" />
+
+        <path d="M178 120 L181 79 C182 66 189 59 199 61 C209 63 213 72 211 85 L204 139 C202 151 196 162 188 171" />
+
+        <path d="M80 140 C69 130 63 119 64 108 C65 96 73 89 84 90 C94 91 101 100 106 111" />
+
+        <path d="M82 147 C100 157 123 160 146 154" />
+        <path d="M146 154 C160 151 174 156 188 171" />
+
+        <path d="M84 174 C103 184 127 186 151 179" />
+        <path d="M85 202 C104 211 126 212 147 205" />
+        <path d="M88 231 C104 237 124 238 142 233" />
+
+        <path d="M73 89 C82 87 92 90 100 97" />
+        <path d="M109 60 C119 57 131 58 140 64" />
+        <path d="M150 70 C160 68 170 71 180 78" />
+        <path d="M183 94 C192 94 201 98 207 104" />
+
+        <path d="M111 91 C120 88 131 89 140 94" />
+        <path d="M150 100 C159 98 169 101 177 106" />
+
+        <path d="M91 158 C97 164 105 168 113 169" />
+        <path d="M122 170 C132 170 140 167 148 162" />
+
+        <path d="M97 191 C104 195 112 197 119 197" />
+        <path d="M126 197 C134 197 141 194 147 190" />
+      </g>
+    </svg>
+  );
+}
+
+function HandArt({ hand }) {
+  if (hand === "rock") return <RockHand />;
+  if (hand === "scissors") return <ScissorsHand />;
+  return <PaperHand />;
+}
+
+/* =========================================
+   カード
+========================================= */
 
 function CardBack() {
   return (
-    <div className="cardFace cardBack">
-      <div className="backBorder">
-        <span className="cornerOrnament tl">
-          ❧
-        </span>
+    <div className="card-face card-back">
+      <div className="back-outer">
+        <div className="back-inner">
+          <span className="back-flower flower-1">❧</span>
+          <span className="back-flower flower-2">❧</span>
+          <span className="back-flower flower-3">❧</span>
+          <span className="back-flower flower-4">❧</span>
 
-        <span className="cornerOrnament tr">
-          ❧
-        </span>
+          <div className="back-diamond diamond-a" />
+          <div className="back-diamond diamond-b" />
 
-        <span className="cornerOrnament bl">
-          ❧
-        </span>
+          <div className="back-star">
+            <span className="star-v" />
+            <span className="star-h" />
+          </div>
 
-        <span className="cornerOrnament br">
-          ❧
-        </span>
-
-        <div className="backDiamond">
-          <div className="backStar">
-            ✦
+          <div className="back-brand">
+            JANKEN FRIENDS
           </div>
         </div>
-
-        <span className="backTiny">
-          FORTUNE
-        </span>
       </div>
     </div>
   );
 }
 
-function CardFront({
-  hand,
-}) {
+function CardFront({ hand }) {
   if (!hand) {
-    return (
-      <div className="cardFace cardFront" />
-    );
+    return <div className="card-face card-front" />;
   }
 
-  const info =
-    HANDS[hand];
+  const info = HANDS[hand];
 
   return (
-    <div className="cardFace cardFront">
-      <div className="paperTexture" />
+    <div className={`card-face card-front ${info.theme}`}>
+      <div className="card-paper" />
 
-      <div className="frontFrame" />
+      <div className="front-border border-1" />
+      <div className="front-border border-2" />
 
-      <div className="frontCorner top">
-        <strong>
-          {info.code}
-        </strong>
-
-        <span>
-          {info.number}
-        </span>
+      <div className="top-left-card">
+        <strong>{info.code}</strong>
+        <span>{info.no}</span>
       </div>
 
-      <div className="frontCorner bottom">
-        <strong>
-          {info.code}
-        </strong>
-
-        <span>
-          {info.number}
-        </span>
+      <div className="top-brand">
+        JANKEN
+        <br />
+        FRIENDS
       </div>
 
-      <div className="cardStar one">
-        ✦
+      <span className="spark spark-a">✦</span>
+      <span className="spark spark-b">✦</span>
+
+      <div className="color-disc" />
+
+      <div className="main-hand">
+        <HandArt hand={hand} />
       </div>
 
-      <div className="cardStar two">
-        ✦
-      </div>
-
-      <div className="handCircle">
-        <HandDrawing
-          hand={hand}
-        />
-      </div>
-
-      <div className="cardEnglish">
+      <div className="side-word side-left">
         {info.name}
+      </div>
+
+      <div className="side-word side-right">
+        {info.name}
+      </div>
+
+      <div className="bottom-card-name">
+        {info.name}
+      </div>
+
+      <div className="point-rule">
+        <span />
+        ✦
+        <span />
+      </div>
+
+      <div className="point-name">
+        {info.point === 1 && "ONE POINT"}
+        {info.point === 2 && "TWO POINTS"}
+        {info.point === 5 && "FIVE POINTS"}
+      </div>
+
+      <div className="bottom-brand">
+        JANKEN FRIENDS
+        <br />
+        PLAYING CARDS
+      </div>
+
+      <div className="bottom-right-card">
+        <strong>{info.code}</strong>
+        <span>{info.no}</span>
       </div>
     </div>
   );
@@ -399,544 +315,303 @@ function PlayingCard({
   selected,
   revealed,
   hand,
-  disabled,
-  onClick,
+  locked,
+  onSelect,
 }) {
   return (
     <button
       type="button"
       className={[
-        "playingCard",
-        selected
-          ? "selected"
-          : "",
-        revealed
-          ? "revealed"
-          : "",
+        "playing-card",
+        selected ? "is-selected" : "",
+        revealed ? "is-revealed" : "",
       ].join(" ")}
-      disabled={disabled}
-      onClick={onClick}
-      aria-label={`カード${index + 1}`}
+      disabled={locked}
+      onClick={() => onSelect(index)}
     >
-      <div className="cardInner">
+      <div className="playing-card-inner">
         <CardBack />
-
-        <CardFront
-          hand={hand}
-        />
+        <CardFront hand={hand} />
       </div>
     </button>
   );
 }
 
-/* =========================
-   敵
-========================= */
+/* =========================================
+   仮面
+========================================= */
 
-function EnemyPortrait() {
+function EnemyArt() {
   return (
-    <div className="portrait">
-      <div className="portraitHalo">
-        <span />
-        <span />
-        <span />
-      </div>
+    <div className="enemy-art">
+      <div className="enemy-circle" />
 
-      <div className="hood leftHood" />
-      <div className="hood rightHood" />
-
-      <div className="enemyMask">
-        <div className="maskCrack c1" />
-        <div className="maskCrack c2" />
-        <div className="maskCrack c3" />
-
-        <div className="eye eyeLeft" />
-        <div className="eye eyeRight" />
-
-        <div className="maskNose" />
-
-        <div className="maskMark">
-          ✦
-        </div>
-      </div>
-
-      <div className="portraitLeaves leftLeaves">
+      <div className="enemy-branches branch-a">
         ❧
       </div>
 
-      <div className="portraitLeaves rightLeaves">
+      <div className="enemy-branches branch-b">
         ❧
       </div>
+
+      <div className="enemy-cloak cloak-left" />
+      <div className="enemy-cloak cloak-right" />
+
+      <div className="enemy-mask">
+        <span className="mask-line ml-1" />
+        <span className="mask-line ml-2" />
+        <span className="mask-line ml-3" />
+        <span className="mask-line ml-4" />
+
+        <div className="mask-eye left" />
+        <div className="mask-eye right" />
+
+        <div className="mask-star">✦</div>
+      </div>
+
+      <div className="enemy-leaf leaf-a">❧</div>
+      <div className="enemy-leaf leaf-b">❧</div>
+      <div className="enemy-leaf leaf-c">❧</div>
     </div>
   );
 }
 
-/* =========================
+/* =========================================
    ゲーム
-========================= */
+========================================= */
 
 export default function Home() {
-  const [battle, setBattle] =
-    useState(1);
+  const [battle, setBattle] = useState(1);
+  const [prediction, setPrediction] = useState(null);
+  const [selected, setSelected] = useState(null);
+  const [revealed, setRevealed] = useState(null);
 
-  const [
-    prediction,
-    setPrediction,
-  ] = useState(null);
+  const [playerHand, setPlayerHand] = useState(null);
+  const [enemyHand, setEnemyHand] = useState(null);
 
-  const [
-    selectedCard,
-    setSelectedCard,
-  ] = useState(null);
+  const [result, setResult] = useState(null);
+  const [predictionHit, setPredictionHit] = useState(null);
 
-  const [
-    revealedCard,
-    setRevealedCard,
-  ] = useState(null);
-
-  const [
-    playerHand,
-    setPlayerHand,
-  ] = useState(null);
-
-  const [
-    enemyHand,
-    setEnemyHand,
-  ] = useState(null);
-
-  const [
-    result,
-    setResult,
-  ] = useState(null);
-
-  const [
-    predictionCorrect,
-    setPredictionCorrect,
-  ] = useState(null);
-
-  const [
-    collected,
-    setCollected,
-  ] = useState([]);
-
-  const [
-    animating,
-    setAnimating,
-  ] = useState(false);
-
-  const setNumber =
-    Math.ceil(
-      battle / 3
-    );
+  const [cards, setCards] = useState([]);
 
   const canReveal =
+    selected !== null &&
     prediction !== null &&
-    selectedCard !== null &&
-    !animating &&
     result === null;
 
-  const winnerText =
-    useMemo(() => {
-      if (result === "win") {
-        return "あなたの勝利";
-      }
-
-      if (result === "lose") {
-        return "仮面の敵の勝利";
-      }
-
-      return "";
-    }, [result]);
-
-  function choosePrediction(
-    value
-  ) {
-    if (
-      animating ||
-      result
-    ) {
-      return;
-    }
-
-    setPrediction(value);
+  function chooseCard(index) {
+    if (result !== null) return;
+    setSelected(index);
   }
 
-  function chooseCard(
-    index
-  ) {
-    if (
-      animating ||
-      result
-    ) {
-      return;
-    }
+  function revealCard() {
+    if (!canReveal) return;
 
-    setSelectedCard(index);
-  }
-
-  function reveal() {
-    if (!canReveal) {
-      return;
-    }
-
-    setAnimating(true);
-
-    const mine =
-      randomHand();
-
-    const enemy =
-      randomHand();
+    const mine = randomHand();
+    const enemy = randomHand();
 
     setPlayerHand(mine);
-
     setEnemyHand(enemy);
+    setRevealed(selected);
 
-    setRevealedCard(
-      selectedCard
-    );
+    if (mine === enemy) {
+      setTimeout(() => {
+        setResult("draw");
+        setPredictionHit(null);
+      }, 650);
 
-    window.setTimeout(
-      () => {
-        if (
-          mine === enemy
-        ) {
-          setResult(
-            "draw"
-          );
+      return;
+    }
 
-          setPredictionCorrect(
-            null
-          );
+    const actual =
+      BEATS[mine] === enemy ? "win" : "lose";
 
-          setAnimating(
-            false
-          );
-
-          return;
-        }
-
-        const actual =
-          BEATS[mine] ===
-          enemy
-            ? "win"
-            : "lose";
-
-        setResult(actual);
-
-        setPredictionCorrect(
-          prediction ===
-            actual
-        );
-
-        setCollected(
-          (current) => [
-            ...current,
-            mine,
-          ]
-        );
-
-        setAnimating(
-          false
-        );
-      },
-      760
-    );
+    setTimeout(() => {
+      setResult(actual);
+      setPredictionHit(prediction === actual);
+      setCards((old) => [...old, mine]);
+    }, 650);
   }
 
-  function resetRound({
-    advance = false,
-  } = {}) {
-    if (advance) {
-      setBattle(
-        (current) =>
-          current + 1
-      );
+  function resetRound(nextBattle = false) {
+    if (nextBattle) {
+      setBattle((old) => old + 1);
     }
 
     setPrediction(null);
-
-    setSelectedCard(
-      null
-    );
-
-    setRevealedCard(
-      null
-    );
-
-    setPlayerHand(
-      null
-    );
-
-    setEnemyHand(
-      null
-    );
-
+    setSelected(null);
+    setRevealed(null);
+    setPlayerHand(null);
+    setEnemyHand(null);
     setResult(null);
-
-    setPredictionCorrect(
-      null
-    );
-
-    setAnimating(false);
+    setPredictionHit(null);
   }
 
-  function nextBattle() {
-    if (
-      collected.length >=
-      9
-    ) {
-      return;
-    }
-
-    resetRound({
-      advance: true,
-    });
-  }
+  const resultLabel =
+    result === "win"
+      ? "WIN"
+      : result === "lose"
+      ? "LOSE"
+      : "DRAW";
 
   return (
-    <main className="game">
-      <div className="pageFrame">
-        <span className="frameCorner f1">
-          ✦
-        </span>
-
-        <span className="frameCorner f2">
-          ✦
-        </span>
-
-        <span className="frameCorner f3">
-          ✦
-        </span>
-
-        <span className="frameCorner f4">
-          ✦
-        </span>
+    <main className="screen">
+      <div className="screen-frame">
+        <i className="frame-star fs-a">✦</i>
+        <i className="frame-star fs-b">✦</i>
+        <i className="frame-star fs-c">✦</i>
+        <i className="frame-star fs-d">✦</i>
       </div>
 
-      <header className="hero">
-        <div className="heroBrand">
-          <div className="brand">
+      {/* HEADER */}
+      <section className="top-panel">
+        <div className="title-block">
+          <h1>
             JANKEN
             <br />
             FRIENDS
-          </div>
+          </h1>
 
-          <div className="tagline">
-            じゃんけんは、
-            出会いだ。
-          </div>
+          <p>じゃんけんは、出会いだ。</p>
 
-          <div className="brandMini">
-            A SMALL GAME
+          <div className="tiny-copy">
+            A
             <br />
-            A BIG ENCOUNTER
+            SMALL
+            <br />
+            GAME
+            <br />
+            A
+            <br />
+            BIG
+            <br />
+            ENCOUNTER
+          </div>
+
+          <div className="compass">
+            <span />
+            <b>✦</b>
           </div>
         </div>
 
-        <EnemyPortrait />
+        <EnemyArt />
 
-        <div className="enemyInfo">
-          <div className="enemyQuote">
+        <div className="enemy-copy">
+          <blockquote>
             「選ぶのは君だ。
             <br />
             運命か、
             <br />
             それとも偶然か。」
+          </blockquote>
+
+          <div className="enemy-name-card">
+            <small>No.01</small>
+            <strong>ノクティス</strong>
+            <em>Noctis</em>
+            <span>星喰らいの仮面</span>
           </div>
-
-          <div className="enemyPlate">
-            <span>
-              No.01
-            </span>
-
-            <strong>
-              ノクティス
-            </strong>
-
-            <small>
-              Noctis
-            </small>
-
-            <div>
-              星喰らいの仮面
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <section className="battleHeader">
-        <div className="battlePill">
-          SET {setNumber}
-          {" / "}
-          BATTLE {battle}
-        </div>
-
-        <div className="score">
-          <span>
-            SCORE
-          </span>
-
-          <strong>
-            {
-              collected.length
-            }
-          </strong>
-
-          <small>
-            / 9
-          </small>
         </div>
       </section>
 
-      <section className="instruction">
-        <h1>
-          カードを1枚選んで、
-          同時に勝敗を予想しよう
-        </h1>
+      {/* BATTLE */}
+      <section className="battle-panel">
+        <header className="battle-meta">
+          <div className="battle-number">
+            SET {Math.ceil(battle / 3)} / BATTLE {battle}
+          </div>
 
-        <p>
-          ※ あいこの場合は再勝負
-        </p>
-      </section>
+          <div className="score-box">
+            <span>SCORE</span>
+            <strong>{cards.length}</strong>
+            <small>/ 9</small>
+          </div>
+        </header>
 
-      <section className="prediction">
-        <button
-          type="button"
-          className={[
-            "predict",
-            "win",
-            prediction ===
-            "win"
-              ? "active"
-              : "",
-          ].join(" ")}
-          onClick={() =>
-            choosePrediction(
-              "win"
-            )
-          }
-        >
-          <span className="predictIcon">
-            ♛
-          </span>
+        <div className="instruction">
+          <h2>
+            カードを1枚選んで、同時に勝敗を予想しよう
+          </h2>
+          <p>※ あいこの場合は再勝負</p>
+        </div>
 
-          <span>
+        <div className="prediction-row">
+          <button
+            className={`prediction-button win ${
+              prediction === "win" ? "active" : ""
+            }`}
+            onClick={() => {
+              if (!result) setPrediction("win");
+            }}
+          >
+            <span>♛</span>
             勝つ
-          </span>
-        </button>
+          </button>
 
-        <button
-          type="button"
-          className={[
-            "predict",
-            "lose",
-            prediction ===
-            "lose"
-              ? "active"
-              : "",
-          ].join(" ")}
-          onClick={() =>
-            choosePrediction(
-              "lose"
-            )
-          }
-        >
-          <span className="predictIcon">
-            ☠
-          </span>
-
-          <span>
+          <button
+            className={`prediction-button lose ${
+              prediction === "lose" ? "active" : ""
+            }`}
+            onClick={() => {
+              if (!result) setPrediction("lose");
+            }}
+          >
+            <span>☠</span>
             負ける
-          </span>
-        </button>
-      </section>
+          </button>
+        </div>
 
-      <section className="table">
-        <div className="cardsArea">
-          {[0, 1, 2].map(
-            (index) => (
+        <div className="card-stage">
+          <div className="main-cards">
+            {[0, 1, 2].map((index) => (
               <PlayingCard
                 key={index}
                 index={index}
-                selected={
-                  selectedCard ===
-                  index
-                }
-                revealed={
-                  revealedCard ===
-                  index
-                }
+                selected={selected === index}
+                revealed={revealed === index}
                 hand={
-                  revealedCard ===
-                  index
+                  revealed === index
                     ? playerHand
                     : null
                 }
-                disabled={
-                  animating ||
-                  result !==
-                    null
-                }
-                onClick={() =>
-                  chooseCard(
-                    index
-                  )
-                }
+                locked={result !== null}
+                onSelect={chooseCard}
               />
-            )
-          )}
+            ))}
 
-          {result &&
-            revealedCard !==
-              null && (
+            {result && revealed !== null && (
               <div
                 className={[
-                  "cardVerdict",
+                  "result-overlay",
+                  `position-${revealed}`,
                   result,
-                  `card-${revealedCard}`,
                 ].join(" ")}
               >
-                <div className="verdictWord">
-                  {result ===
-                    "win" &&
-                    "WIN"}
-
-                  {result ===
-                    "lose" &&
-                    "LOSE"}
-
-                  {result ===
-                    "draw" &&
-                    "DRAW"}
+                <div className="result-word">
+                  <span className="result-star left">✦</span>
+                  {resultLabel}
+                  <span className="result-star right">✦</span>
                 </div>
 
-                <div className="verdictRibbon">
-                  {result ===
-                  "draw" ? (
+                <div className="prediction-result">
+                  {result === "draw" ? (
                     <>
-                      あいこ
-                      <span>
-                        再勝負
-                      </span>
+                      <strong>あいこ</strong>
+                      <span>再勝負</span>
                     </>
                   ) : (
                     <>
-                      {predictionCorrect
-                        ? "予言通り！"
-                        : "予言失敗"}
+                      <strong>
+                        {predictionHit
+                          ? "予言通り！"
+                          : "予言失敗"}
+                      </strong>
 
                       <span>
-                        {
-                          HANDS[
-                            playerHand
-                          ].jp
-                        }
-                        {" / "}
-                        {
-                          HANDS[
-                            playerHand
-                          ].point
-                        }
+                        {predictionHit ? "+" : ""}
+                        {predictionHit
+                          ? HANDS[playerHand].point
+                          : 0}
                         pt
                       </span>
                     </>
@@ -944,175 +619,100 @@ export default function Home() {
                 </div>
               </div>
             )}
-        </div>
-
-        {!result && (
-          <button
-            type="button"
-            className="revealButton"
-            disabled={
-              !canReveal
-            }
-            onClick={
-              reveal
-            }
-          >
-            選んだカードをめくる
-          </button>
-        )}
-      </section>
-
-      {result && (
-        <section className="resultArea">
-          <div className="versus">
-            <span>
-              あなた
-            </span>
-
-            <div className="smallHand">
-              <HandDrawing
-                hand={
-                  playerHand
-                }
-              />
-            </div>
-
-            <b>
-              VS
-            </b>
-
-            <div className="smallHand">
-              <HandDrawing
-                hand={
-                  enemyHand
-                }
-              />
-            </div>
-
-            <span>
-              仮面
-            </span>
           </div>
 
-          {result !==
-            "draw" && (
-            <div className="winnerText">
-              {winnerText}
-            </div>
-          )}
-
-          {result ===
-            "draw" && (
+          {!result && (
             <button
-              type="button"
-              className="nextButton"
-              onClick={() =>
-                resetRound()
-              }
+              className="flip-button"
+              disabled={!canReveal}
+              onClick={revealCard}
             >
-              再勝負する
-              <span>
-                ›
-              </span>
+              選んだカードをめくる
             </button>
           )}
+        </div>
 
-          {result !==
-            "draw" &&
-            collected.length <
-              9 && (
+        {result && (
+          <div className="after-result">
+            <div className="actual-result">
+              あなた
+              <span className="mini-hand">
+                <HandArt hand={playerHand} />
+              </span>
+
+              <b>VS</b>
+
+              <span className="mini-hand">
+                <HandArt hand={enemyHand} />
+              </span>
+              仮面
+            </div>
+
+            {result === "draw" ? (
               <button
-                type="button"
-                className="nextButton"
-                onClick={
-                  nextBattle
-                }
+                className="next-button"
+                onClick={() => resetRound(false)}
+              >
+                再勝負する
+                <span>▶</span>
+              </button>
+            ) : (
+              <button
+                className="next-button"
+                onClick={() => resetRound(true)}
               >
                 次の勝負へ
-                <span>
-                  ›
-                </span>
+                <span>▶</span>
               </button>
             )}
+          </div>
+        )}
 
-          {result !==
-            "draw" &&
-            collected.length ===
-              9 && (
-              <button
-                type="button"
-                className="nextButton finalButton"
-              >
-                FINALへ
-                <span>
-                  ›
-                </span>
-              </button>
-            )}
+        {/* HISTORY */}
+        <section className="history-panel">
+          <h3>これまでに引いたカード</h3>
+
+          <div className="history-layout">
+            <div className="history-cards">
+              {Array.from({ length: 9 }).map((_, index) => {
+                const hand = cards[index];
+
+                return (
+                  <div
+                    className={`history-card ${
+                      hand ? `filled ${hand}` : ""
+                    }`}
+                    key={index}
+                  >
+                    {hand ? (
+                      <>
+                        <span className="history-code">
+                          {HANDS[hand].code}
+                        </span>
+
+                        <div className="history-disc" />
+
+                        <HandArt hand={hand} />
+                      </>
+                    ) : (
+                      <>
+                        <span className="history-index">
+                          {index + 1}
+                        </span>
+                        <span className="history-star">
+                          ✦
+                        </span>
+                      </>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </section>
-      )}
-
-      <section className="history">
-        <div className="historyHeading">
-          これまでに引いたカード
-        </div>
-
-        <div className="historyCards">
-          {Array.from({
-            length: 9,
-          }).map(
-            (_, index) => {
-              const hand =
-                collected[
-                  index
-                ];
-
-              return (
-                <div
-                  className={[
-                    "historyCard",
-                    hand
-                      ? "obtained"
-                      : "",
-                  ].join(" ")}
-                  key={index}
-                >
-                  {hand ? (
-                    <>
-                      <span className="miniCode">
-                        {
-                          HANDS[
-                            hand
-                          ].code
-                        }
-                      </span>
-
-                      <HandDrawing
-                        hand={
-                          hand
-                        }
-                      />
-                    </>
-                  ) : (
-                    <>
-                      <span className="historyNumber">
-                        {index +
-                          1}
-                      </span>
-
-                      <span className="miniStar">
-                        ✦
-                      </span>
-                    </>
-                  )}
-                </div>
-              );
-            }
-          )}
-        </div>
       </section>
 
-      <footer>
+      <footer className="game-footer">
         <span />
         JANKEN FRIENDS
         <span />
