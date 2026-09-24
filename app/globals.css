@@ -2297,3 +2297,440 @@ button {
     height: 34px;
   }
 }
+/* =========================================================
+   CARD PROPORTION FIX
+   iPhoneでもカード比率を固定する最終補正
+========================================================= */
+
+/*
+  カードエリアそのものを
+  残り高さいっぱいに引き伸ばさない
+*/
+.card-stage {
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+
+
+/*
+  3枚のカードは横幅から高さを決める。
+  これで画面の高さに引っ張られなくなる。
+*/
+.main-cards {
+  width: 100%;
+  height: auto;
+
+  min-height: 0;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  align-items: center;
+
+  gap: clamp(6px, 1.8vw, 9px);
+
+  padding: 0 3px;
+
+  perspective: 1200px;
+}
+
+
+/*
+  メインカード
+  約 2 : 3 のトランプ比率
+*/
+.playing-card {
+  width: 100%;
+  height: auto;
+
+  aspect-ratio: 2 / 3;
+
+  min-width: 0;
+  min-height: 0;
+
+  padding: 0;
+
+  position: relative;
+
+  border: 0;
+
+  background: transparent;
+
+  perspective: 1000px;
+
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+
+/*
+  内側もカード比率に追従
+*/
+.playing-card-inner {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform
+    0.62s
+    cubic-bezier(
+      0.2,
+      0.68,
+      0.24,
+      1
+    );
+}
+
+
+/* =========================================================
+   CARD FRONT
+   線画がカード中央に綺麗に入るよう調整
+========================================================= */
+
+.main-hand {
+  width: 72%;
+  height: 58%;
+
+  position: absolute;
+
+  z-index: 6;
+
+  left: 14%;
+  top: 18%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #171713;
+}
+
+
+/*
+  SVGを文字扱いせず、
+  カード内の図版として固定
+*/
+.main-hand .hand-art {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: visible;
+
+  color: #171713;
+}
+
+
+/*
+  グーは少し大きく
+*/
+.card-front.rock .main-hand {
+  width: 76%;
+  height: 61%;
+
+  left: 12%;
+  top: 17%;
+}
+
+
+/*
+  チョキは指が長いので
+  上下方向を少し広めに
+*/
+.card-front.scissors .main-hand {
+  width: 69%;
+  height: 62%;
+
+  left: 15.5%;
+  top: 15%;
+}
+
+
+/*
+  パーは横幅を少し広く
+*/
+.card-front.paper .main-hand {
+  width: 77%;
+  height: 61%;
+
+  left: 11.5%;
+  top: 16%;
+}
+
+
+/* =========================================================
+   RESULT OVERLAY
+   カード比率変更後の位置補正
+========================================================= */
+
+.result-overlay {
+  width:
+    calc(
+      (100% - 18px) / 3
+    );
+
+  height: 100%;
+
+  top: 0;
+}
+
+.position-0 {
+  left: 3px;
+}
+
+.position-1 {
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+.position-2 {
+  right: 3px;
+}
+
+
+/*
+  真ん中だけresultAppearのtransformと
+  translateXが衝突するので個別処理
+*/
+.position-1 {
+  animation:
+    middleResultAppear
+    0.35s
+    0.52s
+    both;
+}
+
+@keyframes middleResultAppear {
+  from {
+    opacity: 0;
+
+    transform:
+      translateX(-50%)
+      translateY(5px)
+      scale(1.08);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateX(-50%)
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   RESULT SIZE
+========================================================= */
+
+.result-word {
+  font-size:
+    clamp(
+      24px,
+      7.2vw,
+      36px
+    );
+}
+
+.prediction-result {
+  min-width: 92%;
+  max-width: 108%;
+
+  padding: 4px 3px;
+}
+
+
+/* =========================================================
+   FLIP BUTTON
+========================================================= */
+
+.flip-button {
+  flex: 0 0 auto;
+
+  width: 100%;
+
+  height:
+    clamp(
+      31px,
+      4.5dvh,
+      38px
+    );
+
+  margin-top:
+    clamp(
+      4px,
+      0.65dvh,
+      6px
+    );
+}
+
+
+/* =========================================================
+   BATTLE PANEL HEIGHT DISTRIBUTION
+========================================================= */
+
+.battle-panel {
+  grid-template-rows:
+    auto
+    auto
+    auto
+    minmax(0, 1fr)
+    auto
+    auto;
+}
+
+
+/*
+  カードステージに巨大な余白ができた場合でも
+  カード自体は伸ばさず中央配置
+*/
+.card-stage {
+  overflow: visible;
+}
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+.history-panel {
+  flex: 0 0 auto;
+}
+
+.history-cards {
+  width: 100%;
+
+  height:
+    clamp(
+      37px,
+      5.7dvh,
+      48px
+    );
+}
+
+
+/*
+  履歴カードの手もSVGとして固定
+*/
+.history-card .hand-art {
+  display: block;
+
+  width: 76%;
+  height: 76%;
+
+  position: absolute;
+
+  z-index: 3;
+
+  left: 12%;
+  top: 12%;
+
+  color: #171713;
+}
+
+
+/* =========================================================
+   DECORATION
+   iOSで装飾文字がカラー絵文字化するのを抑える
+========================================================= */
+
+.back-flower,
+.enemy-branches,
+.enemy-leaf,
+.frame-star,
+.spark,
+.history-star,
+.mask-star,
+.result-star {
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+
+  font-variant-emoji: text;
+}
+
+
+/* =========================================================
+   iPHONE SHORT HEIGHT
+========================================================= */
+
+@media (max-height: 760px) {
+
+  .top-panel {
+    flex-basis: 116px;
+  }
+
+  .main-cards {
+    gap: 6px;
+  }
+
+  .playing-card {
+    aspect-ratio: 2 / 3;
+  }
+
+  .history-cards {
+    height: 36px;
+  }
+
+  .prediction-button {
+    height: 28px;
+  }
+
+  .next-button {
+    height: 31px;
+  }
+}
+
+
+/* =========================================================
+   VERY SHORT iPHONE
+========================================================= */
+
+@media (max-height: 680px) {
+
+  .top-panel {
+    flex-basis: 101px;
+  }
+
+  .playing-card {
+    aspect-ratio: 2 / 3;
+  }
+
+  .main-cards {
+    gap: 5px;
+  }
+
+  .prediction-button {
+    height: 25px;
+  }
+
+  .instruction h2 {
+    font-size: 9px;
+  }
+
+  .history-cards {
+    height: 31px;
+  }
+
+  .next-button {
+    height: 28px;
+  }
+}
