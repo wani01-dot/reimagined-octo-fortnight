@@ -24,34 +24,36 @@
 html,
 body {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
-
-  overflow: hidden;
-
   background: #080906;
+}
 
-  overscroll-behavior: none;
+html {
+  overflow: hidden;
 }
 
 body {
+  overflow: hidden;
   color: var(--ivory);
 
   font-family:
-    "Times New Roman",
     "Yu Mincho",
     "Hiragino Mincho ProN",
+    "Hiragino Mincho Pro",
+    "Times New Roman",
     serif;
 
   -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
 }
 
 button {
   font: inherit;
   -webkit-tap-highlight-color: transparent;
 }
-
 
 /* =========================================================
    SCREEN
@@ -70,7 +72,7 @@ button {
   padding:
     max(6px, env(safe-area-inset-top))
     10px
-    max(10px, env(safe-area-inset-bottom));
+    max(8px, env(safe-area-inset-bottom));
 
   position: relative;
 
@@ -81,14 +83,14 @@ button {
 
   background:
     radial-gradient(
-      circle at 50% 7%,
-      rgba(128, 96, 43, 0.1),
-      transparent 25%
+      circle at 50% 5%,
+      rgba(130, 99, 48, 0.12),
+      transparent 24%
     ),
     linear-gradient(
       180deg,
-      #10110e 0%,
-      #090a07 54%,
+      #11120e 0%,
+      #090a07 50%,
       #070806 100%
     );
 }
@@ -101,35 +103,17 @@ button {
 
   pointer-events: none;
 
-  opacity: 0.26;
+  opacity: 0.25;
 
   background:
     repeating-linear-gradient(
       8deg,
-      rgba(255,255,255,0.008) 0,
-      rgba(255,255,255,0.008) 1px,
+      rgba(255, 255, 255, 0.008) 0,
+      rgba(255, 255, 255, 0.008) 1px,
       transparent 1px,
       transparent 5px
     );
 }
-
-.screen::after {
-  content: "❧";
-
-  position: absolute;
-
-  right: -30px;
-  top: 47%;
-
-  color: rgba(157,123,64,0.15);
-
-  font-size: 110px;
-
-  transform: rotate(-28deg);
-
-  pointer-events: none;
-}
-
 
 /* =========================================================
    FRAME
@@ -145,8 +129,7 @@ button {
 
   z-index: 50;
 
-  border:
-    1px solid rgba(176,139,70,0.5);
+  border: 1px solid rgba(176, 139, 70, 0.5);
 
   pointer-events: none;
 }
@@ -157,8 +140,7 @@ button {
   position: absolute;
   inset: 4px;
 
-  border:
-    1px solid rgba(176,139,70,0.1);
+  border: 1px solid rgba(176, 139, 70, 0.1);
 }
 
 .frame-star {
@@ -167,7 +149,6 @@ button {
   color: var(--gold2);
 
   font-style: normal;
-
   font-size: 10px;
 }
 
@@ -191,19 +172,13 @@ button {
   bottom: -7px;
 }
 
-
 /* =========================================================
    TOP PANEL
 ========================================================= */
 
 .top-panel {
-  flex:
-    0 0
-    clamp(
-      118px,
-      20.5dvh,
-      158px
-    );
+  height: clamp(112px, 19dvh, 150px);
+  flex: 0 0 clamp(112px, 19dvh, 150px);
 
   min-height: 0;
 
@@ -213,21 +188,19 @@ button {
   display: grid;
 
   grid-template-columns:
-    0.92fr
-    1.28fr
+    0.9fr
+    1.25fr
     0.9fr;
 
   gap: 2px;
 
-  padding:
-    5px 7px 3px;
+  padding: 5px 7px 3px;
 
   overflow: hidden;
 
   border-bottom:
-    1px solid rgba(171,133,65,0.55);
+    1px solid rgba(171, 133, 65, 0.55);
 }
-
 
 /* =========================================================
    TITLE
@@ -235,21 +208,15 @@ button {
 
 .title-block {
   position: relative;
-
   z-index: 5;
 }
 
 .title-block h1 {
   margin: 0;
 
-  font-size:
-    clamp(
-      18px,
-      5.8vw,
-      28px
-    );
+  font-size: clamp(18px, 5.7vw, 27px);
 
-  line-height: 0.87;
+  line-height: 0.88;
 
   font-weight: 400;
 
@@ -257,18 +224,11 @@ button {
 }
 
 .title-block p {
-  margin:
-    clamp(3px, 0.6dvh, 6px)
-    0 0;
+  margin: 4px 0 0;
 
-  font-size:
-    clamp(
-      5px,
-      1.5vw,
-      7px
-    );
+  font-size: clamp(5px, 1.45vw, 7px);
 
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
 
   color: var(--ivory2);
 }
@@ -277,56 +237,29 @@ button {
   position: absolute;
 
   left: 0;
-
-  top:
-    clamp(
-      62px,
-      10dvh,
-      82px
-    );
+  top: clamp(60px, 9.5dvh, 78px);
 
   color: var(--gold2);
 
-  font-size:
-    clamp(
-      3px,
-      1vw,
-      5px
-    );
+  font-size: clamp(3px, 0.95vw, 5px);
 
-  line-height: 1.85;
+  line-height: 1.8;
 
-  letter-spacing: 0.23em;
+  letter-spacing: 0.2em;
 }
 
 .compass {
-  width:
-    clamp(
-      36px,
-      11vw,
-      50px
-    );
+  width: clamp(34px, 10vw, 48px);
 
   aspect-ratio: 1;
 
   position: absolute;
 
-  left:
-    clamp(
-      27px,
-      9vw,
-      41px
-    );
-
-  top:
-    clamp(
-      77px,
-      12dvh,
-      100px
-    );
+  left: clamp(27px, 8vw, 40px);
+  top: clamp(72px, 11.5dvh, 94px);
 
   border:
-    1px solid rgba(165,129,62,0.32);
+    1px solid rgba(165, 129, 62, 0.32);
 
   border-radius: 50%;
 }
@@ -340,11 +273,9 @@ button {
   left: 50%;
   top: 50%;
 
-  background:
-    rgba(174,137,68,0.43);
+  background: rgba(174, 137, 68, 0.43);
 
-  transform:
-    translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .compass::before {
@@ -374,7 +305,6 @@ button {
   font-weight: 400;
 }
 
-
 /* =========================================================
    ENEMY
 ========================================================= */
@@ -388,25 +318,19 @@ button {
 }
 
 .enemy-circle {
-  width:
-    clamp(
-      82px,
-      27vw,
-      115px
-    );
+  width: clamp(80px, 26vw, 112px);
 
   aspect-ratio: 1;
 
   position: absolute;
 
   left: 50%;
-  top: 4%;
+  top: 3%;
 
-  transform:
-    translateX(-50%);
+  transform: translateX(-50%);
 
   border:
-    1px solid rgba(164,127,59,0.22);
+    1px solid rgba(164, 127, 59, 0.22);
 
   border-radius: 50%;
 }
@@ -416,11 +340,10 @@ button {
   content: "";
 
   position: absolute;
-
   inset: 14%;
 
   border:
-    1px solid rgba(164,127,59,0.1);
+    1px solid rgba(164, 127, 59, 0.1);
 
   transform: rotate(45deg);
 }
@@ -445,7 +368,7 @@ button {
     );
 
   border:
-    1px solid rgba(166,130,65,0.17);
+    1px solid rgba(166, 130, 65, 0.17);
 }
 
 .cloak-left {
@@ -453,8 +376,7 @@ button {
 
   left: 3%;
 
-  border-radius:
-    80% 15% 4% 16%;
+  border-radius: 80% 15% 4% 16%;
 
   transform: rotate(10deg);
 }
@@ -464,33 +386,21 @@ button {
 
   right: 3%;
 
-  border-radius:
-    15% 80% 16% 4%;
+  border-radius: 15% 80% 16% 4%;
 
   transform: rotate(-10deg);
 }
 
 .enemy-mask {
-  width:
-    clamp(
-      50px,
-      16vw,
-      68px
-    );
-
-  height:
-    clamp(
-      73px,
-      23vw,
-      99px
-    );
+  width: clamp(48px, 15vw, 65px);
+  height: clamp(69px, 21vw, 94px);
 
   position: absolute;
 
   z-index: 4;
 
   left: 50%;
-  top: 14%;
+  top: 12%;
 
   transform:
     translateX(-50%)
@@ -517,8 +427,7 @@ button {
 
   filter:
     drop-shadow(
-      0 6px 7px
-      rgba(0,0,0,0.6)
+      0 6px 7px rgba(0, 0, 0, 0.6)
     );
 }
 
@@ -534,7 +443,7 @@ button {
   height: 82%;
 
   background:
-    rgba(59,44,25,0.31);
+    rgba(59, 44, 25, 0.31);
 }
 
 .mask-eye {
@@ -585,7 +494,7 @@ button {
   width: 1px;
 
   background:
-    rgba(68,49,26,0.37);
+    rgba(68, 49, 26, 0.37);
 }
 
 .ml-1 {
@@ -630,20 +539,14 @@ button {
 
   z-index: 6;
 
-  color:
-    rgba(
-      172,
-      136,
-      68,
-      0.48
-    );
+  color: rgba(172, 136, 68, 0.48);
 }
 
 .branch-a {
   left: -2px;
   top: 4px;
 
-  font-size: 28px;
+  font-size: 20px;
 
   transform: rotate(-27deg);
 }
@@ -652,7 +555,7 @@ button {
   right: -2px;
   top: 11px;
 
-  font-size: 27px;
+  font-size: 20px;
 
   transform: rotate(151deg);
 }
@@ -661,26 +564,25 @@ button {
   left: 10px;
   bottom: 8px;
 
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .leaf-b {
   right: 5px;
   bottom: 20px;
 
-  font-size: 17px;
+  font-size: 14px;
 }
 
 .leaf-c {
   left: 50%;
   top: 2px;
 
-  font-size: 13px;
+  font-size: 11px;
 }
 
-
 /* =========================================================
-   ENEMY TEXT
+   ENEMY COPY
 ========================================================= */
 
 .enemy-copy {
@@ -695,33 +597,23 @@ button {
 .enemy-copy blockquote {
   margin: 0;
 
-  font-size:
-    clamp(
-      5px,
-      1.45vw,
-      7px
-    );
+  font-size: clamp(5px, 1.4vw, 7px);
 
   line-height: 1.45;
 
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
 }
 
 .enemy-name-card {
-  margin-top:
-    clamp(
-      4px,
-      0.8dvh,
-      8px
-    );
+  margin-top: 4px;
 
   padding: 4px 5px;
 
   border:
-    1px solid rgba(171,134,66,0.52);
+    1px solid rgba(171, 134, 66, 0.52);
 
   background:
-    rgba(10,10,8,0.45);
+    rgba(10, 10, 8, 0.45);
 }
 
 .enemy-name-card small {
@@ -739,12 +631,7 @@ button {
 
   margin-top: 2px;
 
-  font-size:
-    clamp(
-      9px,
-      2.8vw,
-      13px
-    );
+  font-size: clamp(9px, 2.7vw, 13px);
 
   font-weight: 400;
 
@@ -754,11 +641,10 @@ button {
 .enemy-name-card em {
   display: block;
 
-  padding:
-    1px 0 2px;
+  padding: 1px 0 2px;
 
   border-bottom:
-    1px solid rgba(171,134,66,0.3);
+    1px solid rgba(171, 134, 66, 0.3);
 
   color: var(--ivory2);
 
@@ -775,47 +661,32 @@ button {
   font-size: 4px;
 }
 
-
 /* =========================================================
    BATTLE PANEL
 ========================================================= */
 
 .battle-panel {
-  flex: 1 1 auto;
-
+  flex: 1 1 0;
   min-height: 0;
 
   position: relative;
   z-index: 2;
 
-  padding:
-    4px 7px 0;
+  padding: 3px 7px 2px;
 
-  display: grid;
-
-  /*
-    全画面の残り高さを
-    各パーツへ割り振る
-  */
-
-  grid-template-rows:
-    auto
-    auto
-    auto
-    minmax(0, 1fr)
-    auto
-    auto;
+  display: flex;
+  flex-direction: column;
 
   overflow: hidden;
 }
-
 
 /* =========================================================
    META
 ========================================================= */
 
 .battle-meta {
-  min-height: 27px;
+  height: clamp(26px, 4dvh, 32px);
+  flex: 0 0 auto;
 
   display: flex;
 
@@ -824,20 +695,14 @@ button {
 }
 
 .battle-number {
-  padding:
-    4px 11px;
+  padding: 4px 11px;
 
   border:
-    1px solid rgba(181,141,67,0.72);
+    1px solid rgba(181, 141, 67, 0.72);
 
   border-radius: 999px;
 
-  font-size:
-    clamp(
-      6px,
-      1.8vw,
-      8px
-    );
+  font-size: clamp(6px, 1.8vw, 8px);
 
   letter-spacing: 0.16em;
 }
@@ -859,12 +724,7 @@ button {
 }
 
 .score-box strong {
-  font-size:
-    clamp(
-      21px,
-      6.4vw,
-      28px
-    );
+  font-size: clamp(20px, 6vw, 27px);
 
   font-weight: 400;
 
@@ -875,19 +735,14 @@ button {
   font-size: 6px;
 }
 
-
 /* =========================================================
    INSTRUCTION
 ========================================================= */
 
 .instruction {
-  padding:
-    clamp(
-      2px,
-      0.55dvh,
-      5px
-    )
-    0;
+  flex: 0 0 auto;
+
+  padding: 2px 0 3px;
 }
 
 .instruction h2 {
@@ -897,23 +752,17 @@ button {
 
   text-align: center;
 
-  font-size:
-    clamp(
-      10px,
-      3.3vw,
-      15px
-    );
+  font-size: clamp(9px, 3vw, 14px);
 
-  line-height: 1.25;
+  line-height: 1.2;
 
   font-weight: 400;
 
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
 }
 
 .instruction p {
-  margin:
-    1px 0 0;
+  margin: 1px 0 0;
 
   text-align: center;
 
@@ -924,20 +773,16 @@ button {
     BlinkMacSystemFont,
     sans-serif;
 
-  font-size:
-    clamp(
-      5px,
-      1.45vw,
-      7px
-    );
+  font-size: clamp(5px, 1.35vw, 7px);
 }
-
 
 /* =========================================================
    PREDICTION
 ========================================================= */
 
 .prediction-row {
+  flex: 0 0 auto;
+
   display: grid;
 
   grid-template-columns:
@@ -945,48 +790,31 @@ button {
 
   gap: 8px;
 
-  margin:
-    0 0
-    clamp(
-      4px,
-      0.7dvh,
-      7px
-    );
+  margin: 0 0 5px;
 }
 
 .prediction-button {
-  height:
-    clamp(
-      30px,
-      4.7dvh,
-      38px
-    );
+  height: clamp(29px, 4.4dvh, 36px);
 
   border:
-    1px solid rgba(181,142,70,0.75);
+    1px solid rgba(181, 142, 70, 0.75);
 
   border-radius: 4px;
 
   color: var(--ivory);
 
-  font-size:
-    clamp(
-      11px,
-      3.4vw,
-      14px
-    );
+  font-size: clamp(10px, 3.2vw, 14px);
 
-  letter-spacing: 0.09em;
+  letter-spacing: 0.08em;
 
   box-shadow:
-    inset 0 0 0 2px
-    rgba(0,0,0,0.27);
+    inset 0 0 0 2px rgba(0, 0, 0, 0.27);
 }
 
 .prediction-button span {
-  margin-right: 8px;
+  margin-right: 7px;
 
-  font-size: 10px;
+  font-size: 9px;
 }
 
 .prediction-button.win {
@@ -1011,59 +839,73 @@ button {
   border-color: #e0bd70;
 
   box-shadow:
-    inset 0 0 0 2px
-    rgba(0,0,0,0.25),
-    0 0 0 1px
-    rgba(198,164,94,0.18);
+    inset 0 0 0 2px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(198, 164, 94, 0.18);
 }
-
 
 /* =========================================================
    CARD STAGE
+
+   重要:
+   ここでは残り高さをカード自身に渡さない。
 ========================================================= */
 
 .card-stage {
+  flex: 1 1 0;
+
   min-height: 0;
 
   position: relative;
 
   display: flex;
-  align-items: center;
+  flex-direction: column;
+
+  align-items: stretch;
+  justify-content: center;
+
+  overflow: hidden;
 }
 
 .main-cards {
   width: 100%;
 
-  height: 100%;
+  /*
+    高さ100%は禁止。
+    横幅からカード比率を決める。
+  */
 
-  min-height: 0;
+  height: auto;
+
+  flex: 0 0 auto;
 
   display: grid;
 
   grid-template-columns:
-    repeat(
-      3,
-      minmax(0,1fr)
-    );
+    repeat(3, minmax(0, 1fr));
 
-  gap: 7px;
+  align-items: center;
 
-  padding:
-    0 3px;
+  gap: 8px;
+
+  padding: 0 3px;
 
   perspective: 1200px;
 }
 
-
 /* =========================================================
    MAIN CARD
+
+   カード比率をここで固定
 ========================================================= */
 
 .playing-card {
   width: 100%;
-  height: 100%;
 
-  min-height: 0;
+  height: auto;
+
+  aspect-ratio: 2 / 3;
+
+  max-height: min(30dvh, 250px);
 
   padding: 0;
 
@@ -1087,14 +929,13 @@ button {
 .playing-card.is-selected {
   transform:
     translateY(-2px)
-    scale(1.01);
+    scale(1.015);
 
   z-index: 6;
 
   filter:
     drop-shadow(
-      0 7px 7px
-      rgba(0,0,0,0.5)
+      0 7px 7px rgba(0, 0, 0, 0.5)
     );
 }
 
@@ -1119,8 +960,7 @@ button {
 
 .playing-card.is-revealed
 .playing-card-inner {
-  transform:
-    rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 .card-face {
@@ -1133,22 +973,18 @@ button {
   border-radius: 5px;
 
   backface-visibility: hidden;
-
   -webkit-backface-visibility: hidden;
 
   box-shadow:
-    0 6px 14px
-    rgba(0,0,0,0.52);
+    0 5px 12px rgba(0, 0, 0, 0.5);
 }
-
 
 /* =========================================================
    CARD BACK
 ========================================================= */
 
 .card-back {
-  border:
-    2px solid #a98a4f;
+  border: 2px solid #a98a4f;
 
   background:
     linear-gradient(
@@ -1164,7 +1000,7 @@ button {
   inset: 4px;
 
   border:
-    1px solid rgba(196,158,85,0.72);
+    1px solid rgba(196, 158, 85, 0.72);
 }
 
 .back-inner {
@@ -1175,7 +1011,7 @@ button {
   overflow: hidden;
 
   border:
-    1px solid rgba(196,158,85,0.36);
+    1px solid rgba(196, 158, 85, 0.36);
 }
 
 .back-inner::before,
@@ -1188,13 +1024,14 @@ button {
   top: 50%;
 
   width: 67%;
+
   aspect-ratio: 1;
 
   border:
-    1px solid rgba(190,150,75,0.34);
+    1px solid rgba(190, 150, 75, 0.34);
 
   transform:
-    translate(-50%,-50%)
+    translate(-50%, -50%)
     rotate(45deg);
 }
 
@@ -1209,10 +1046,10 @@ button {
   top: 50%;
 
   border:
-    1px solid rgba(190,150,75,0.15);
+    1px solid rgba(190, 150, 75, 0.15);
 
   transform:
-    translate(-50%,-50%)
+    translate(-50%, -50%)
     rotate(45deg);
 }
 
@@ -1228,6 +1065,7 @@ button {
 
 .back-star {
   width: 45%;
+
   aspect-ratio: 1;
 
   position: absolute;
@@ -1235,8 +1073,7 @@ button {
   left: 50%;
   top: 50%;
 
-  transform:
-    translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 
 .star-v,
@@ -1252,8 +1089,7 @@ button {
       #8c6c36
     );
 
-  transform:
-    translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 
 .star-v {
@@ -1290,6 +1126,11 @@ button {
     );
 }
 
+/*
+  ❧を小さくする。
+  ここは次の段階で完全CSS装飾にもできる。
+*/
+
 .back-flower {
   position: absolute;
 
@@ -1300,39 +1141,36 @@ button {
       202,
       164,
       89,
-      0.72
+      0.65
     );
 
-  font-size:
-    clamp(
-      7px,
-      2vw,
-      10px
-    );
+  font-size: 7px;
+
+  line-height: 1;
 }
 
 .flower-1 {
   left: 2px;
-  top: 1px;
+  top: 2px;
 }
 
 .flower-2 {
   right: 2px;
-  top: 1px;
+  top: 2px;
 
   transform: scaleX(-1);
 }
 
 .flower-3 {
   left: 2px;
-  bottom: 1px;
+  bottom: 2px;
 
   transform: scaleY(-1);
 }
 
 .flower-4 {
   right: 2px;
-  bottom: 1px;
+  bottom: 2px;
 
   transform: scale(-1);
 }
@@ -1359,17 +1197,14 @@ button {
   letter-spacing: 0.2em;
 }
 
-
 /* =========================================================
    CARD FRONT
 ========================================================= */
 
 .card-front {
-  transform:
-    rotateY(180deg);
+  transform: rotateY(180deg);
 
-  border:
-    2px solid currentColor;
+  border: 2px solid currentColor;
 
   background: #eee4cf;
 
@@ -1392,7 +1227,7 @@ button {
   background:
     radial-gradient(
       circle at 15% 20%,
-      rgba(80,59,31,0.07)
+      rgba(80, 59, 31, 0.07)
       0 1px,
       transparent 1.5px
     ),
@@ -1443,12 +1278,7 @@ button {
 }
 
 .top-left-card strong {
-  font-size:
-    clamp(
-      17px,
-      5.3vw,
-      24px
-    );
+  font-size: clamp(15px, 4.7vw, 23px);
 
   line-height: 0.8;
 
@@ -1500,6 +1330,7 @@ button {
 
 .color-disc {
   width: 66%;
+
   aspect-ratio: 1;
 
   position: absolute;
@@ -1537,6 +1368,8 @@ button {
 }
 
 .hand-art {
+  display: block;
+
   width: 100%;
   height: 100%;
 
@@ -1556,8 +1389,7 @@ button {
 
   letter-spacing: 0.13em;
 
-  writing-mode:
-    vertical-rl;
+  writing-mode: vertical-rl;
 }
 
 .side-left {
@@ -1583,12 +1415,7 @@ button {
 
   text-align: center;
 
-  font-size:
-    clamp(
-      5px,
-      1.8vw,
-      8px
-    );
+  font-size: clamp(5px, 1.7vw, 8px);
 
   letter-spacing: 0.18em;
 }
@@ -1677,12 +1504,7 @@ button {
 }
 
 .bottom-right-card strong {
-  font-size:
-    clamp(
-      15px,
-      4.7vw,
-      22px
-    );
+  font-size: clamp(14px, 4.3vw, 21px);
 
   line-height: 0.8;
 
@@ -1695,30 +1517,25 @@ button {
   font-size: 5px;
 }
 
-
 /* =========================================================
    FLIP BUTTON
+
+   必ずカード3枚の下へ
 ========================================================= */
 
 .flip-button {
-  width: 100%;
+  width: calc(100% - 6px);
 
-  height:
-    clamp(
-      31px,
-      4.5dvh,
-      38px
-    );
+  height: clamp(29px, 4.3dvh, 36px);
 
-  margin-top:
-    clamp(
-      3px,
-      0.6dvh,
-      6px
-    );
+  flex: 0 0 auto;
+
+  margin:
+    clamp(4px, 0.6dvh, 6px)
+    3px 0;
 
   border:
-    1px solid rgba(181,142,70,0.7);
+    1px solid rgba(181, 142, 70, 0.7);
 
   border-radius: 3px;
 
@@ -1742,22 +1559,18 @@ button {
   opacity: 0.27;
 }
 
-
 /* =========================================================
    RESULT
 ========================================================= */
 
 .result-overlay {
-  width:
-    calc(
-      (100% - 20px) / 3
-    );
+  width: calc((100% - 22px) / 3);
 
-  height: 100%;
+  aspect-ratio: 2 / 3;
 
   position: absolute;
 
-  top: 0;
+  top: 50%;
 
   z-index: 20;
 
@@ -1768,6 +1581,8 @@ button {
 
   align-items: center;
   justify-content: center;
+
+  transform: translateY(-50%);
 
   animation:
     resultAppear
@@ -1781,10 +1596,12 @@ button {
 }
 
 .position-1 {
-  left:
+  left: 50%;
+
+  margin-left:
     calc(
-      ((100% - 20px) / 3)
-      + 10px
+      ((100% - 22px) / 3)
+      / -2
     );
 }
 
@@ -1795,8 +1612,6 @@ button {
 .result-word {
   position: relative;
 
-  margin-top: 4px;
-
   color: #c9a65e;
 
   font-family:
@@ -1804,12 +1619,7 @@ button {
     "Times New Roman",
     serif;
 
-  font-size:
-    clamp(
-      27px,
-      8vw,
-      39px
-    );
+  font-size: clamp(25px, 7.5vw, 38px);
 
   font-style: italic;
 
@@ -1821,8 +1631,7 @@ button {
 
   text-shadow:
     0 2px 0 #5d4524,
-    0 5px 7px
-    rgba(0,0,0,0.78);
+    0 5px 7px rgba(0, 0, 0, 0.78);
 }
 
 .result-overlay.lose
@@ -1831,8 +1640,7 @@ button {
 
   text-shadow:
     0 2px 0 #4d1714,
-    0 5px 7px
-    rgba(0,0,0,0.78);
+    0 5px 7px rgba(0, 0, 0, 0.78);
 }
 
 .result-overlay.draw
@@ -1862,24 +1670,23 @@ button {
 
 .prediction-result {
   min-width: 100%;
-  max-width: 108%;
 
   margin-top: 5px;
 
-  padding: 4px;
+  padding: 4px 2px;
 
   display: flex;
 
   align-items: center;
   justify-content: center;
 
-  gap: 5px;
+  gap: 4px;
 
   border:
-    1px solid rgba(188,150,78,0.72);
+    1px solid rgba(188, 150, 78, 0.72);
 
   background:
-    rgba(11,11,9,0.95);
+    rgba(11, 11, 9, 0.95);
 
   color: var(--ivory);
 
@@ -1901,21 +1708,12 @@ button {
 @keyframes resultAppear {
   from {
     opacity: 0;
-
-    transform:
-      translateY(5px)
-      scale(1.08);
   }
 
   to {
     opacity: 1;
-
-    transform:
-      translateY(0)
-      scale(1);
   }
 }
-
 
 /* =========================================================
    AFTER RESULT
@@ -1926,23 +1724,15 @@ button {
 }
 
 .after-result {
-  padding-top:
-    clamp(
-      3px,
-      0.6dvh,
-      6px
-    );
+  flex: 0 0 auto;
+
+  padding-top: 4px;
 }
 
 .next-button {
   width: 100%;
 
-  height:
-    clamp(
-      33px,
-      4.8dvh,
-      41px
-    );
+  height: clamp(31px, 4.5dvh, 38px);
 
   display: flex;
 
@@ -1952,21 +1742,16 @@ button {
   gap: 12px;
 
   border:
-    1px solid rgba(181,142,70,0.76);
+    1px solid rgba(181, 142, 70, 0.76);
 
   border-radius: 3px;
 
   background:
-    rgba(14,14,11,0.82);
+    rgba(14, 14, 11, 0.82);
 
   color: var(--ivory);
 
-  font-size:
-    clamp(
-      10px,
-      3vw,
-      13px
-    );
+  font-size: clamp(10px, 3vw, 13px);
 
   font-weight: 600;
 
@@ -1979,47 +1764,27 @@ button {
   font-size: 10px;
 }
 
-
 /* =========================================================
    HISTORY
 ========================================================= */
 
 .history-panel {
-  margin-top:
-    clamp(
-      4px,
-      0.7dvh,
-      7px
-    );
+  flex: 0 0 auto;
 
-  padding-top:
-    clamp(
-      4px,
-      0.6dvh,
-      6px
-    );
+  margin-top: 4px;
+
+  padding-top: 4px;
 
   border-top:
-    1px solid rgba(174,136,67,0.48);
+    1px solid rgba(174, 136, 67, 0.48);
 }
 
 .history-panel h3 {
-  margin:
-    0 0
-    clamp(
-      3px,
-      0.45dvh,
-      5px
-    );
+  margin: 0 0 3px;
 
   color: var(--gold2);
 
-  font-size:
-    clamp(
-      6px,
-      1.7vw,
-      8px
-    );
+  font-size: clamp(6px, 1.7vw, 8px);
 
   font-weight: 400;
 
@@ -2027,20 +1792,12 @@ button {
 }
 
 .history-cards {
-  height:
-    clamp(
-      39px,
-      6.3dvh,
-      53px
-    );
+  height: clamp(34px, 5.4dvh, 46px);
 
   display: grid;
 
   grid-template-columns:
-    repeat(
-      9,
-      minmax(0,1fr)
-    );
+    repeat(9, minmax(0, 1fr));
 
   gap: 3px;
 }
@@ -2053,7 +1810,7 @@ button {
   overflow: hidden;
 
   border:
-    1px solid rgba(177,139,70,0.67);
+    1px solid rgba(177, 139, 70, 0.67);
 
   border-radius: 2px;
 
@@ -2073,7 +1830,7 @@ button {
   inset: 3px;
 
   border:
-    1px solid rgba(177,139,70,0.16);
+    1px solid rgba(177, 139, 70, 0.16);
 }
 
 .history-index {
@@ -2109,8 +1866,7 @@ button {
 
   font-size: 7px;
 
-  transform:
-    translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 
 .history-card.filled {
@@ -2144,12 +1900,13 @@ button {
 
 .history-disc {
   width: 70%;
+
   aspect-ratio: 1;
 
   position: absolute;
 
   left: 15%;
-  top: 22%;
+  top: 18%;
 
   border-radius: 50%;
 
@@ -2168,82 +1925,35 @@ button {
 
 .history-card
 .hand-art {
-  width: 76%;
-  height: 76%;
+  width: 72%;
+  height: 72%;
 
   position: absolute;
 
   z-index: 3;
 
-  left: 12%;
-  top: 12%;
+  left: 14%;
+  top: 14%;
 
   color: #171713;
 }
 
-
 /* =========================================================
    FOOTER
-   固定画面ではスペース節約のため非表示
 ========================================================= */
 
 .game-footer {
   display: none;
 }
 
-
 /* =========================================================
-   SHORT SCREENS
-   Safariで縦領域が少ない時
+   SHORT iPHONE
 ========================================================= */
 
 @media (max-height: 760px) {
-
   .top-panel {
-    flex-basis: 124px;
-  }
-
-  .tiny-copy {
-    top: 62px;
-  }
-
-  .compass {
-    top: 77px;
-
-    width: 36px;
-  }
-
-  .enemy-mask {
-    width: 51px;
-    height: 74px;
-  }
-
-  .instruction h2 {
-    font-size: 10px;
-  }
-
-  .prediction-button {
-    height: 30px;
-  }
-
-  .history-cards {
-    height: 39px;
-  }
-}
-
-
-/* =========================================================
-   VERY SHORT SCREENS
-========================================================= */
-
-@media (max-height: 680px) {
-
-  .top-panel {
-    flex-basis: 108px;
-  }
-
-  .title-block h1 {
-    font-size: 17px;
+    height: 110px;
+    flex-basis: 110px;
   }
 
   .tiny-copy,
@@ -2251,25 +1961,61 @@ button {
     display: none;
   }
 
+  .enemy-mask {
+    width: 45px;
+    height: 65px;
+  }
+
+  .instruction h2 {
+    font-size: 9px;
+  }
+
+  .prediction-button {
+    height: 28px;
+  }
+
+  .playing-card {
+    max-height: 190px;
+  }
+
+  .history-cards {
+    height: 33px;
+  }
+}
+
+/* =========================================================
+   VERY SHORT
+========================================================= */
+
+@media (max-height: 680px) {
+  .top-panel {
+    height: 96px;
+    flex-basis: 96px;
+  }
+
+  .title-block h1 {
+    font-size: 16px;
+  }
+
+  .title-block p {
+    font-size: 5px;
+  }
+
   .enemy-copy blockquote {
     display: none;
   }
 
-  .enemy-name-card {
-    margin-top: 2px;
-  }
-
   .enemy-mask {
-    width: 46px;
-    height: 67px;
+    width: 40px;
+    height: 58px;
   }
 
   .battle-meta {
-    min-height: 23px;
+    height: 23px;
   }
 
   .instruction {
-    padding: 1px 0 2px;
+    padding: 1px 0;
   }
 
   .prediction-row {
@@ -2277,460 +2023,28 @@ button {
   }
 
   .prediction-button {
-    height: 27px;
-  }
-
-  .after-result {
-    padding-top: 2px;
-  }
-
-  .next-button {
-    height: 30px;
-  }
-
-  .history-panel {
-    margin-top: 3px;
-    padding-top: 3px;
-  }
-
-  .history-cards {
-    height: 34px;
-  }
-}
-/* =========================================================
-   CARD PROPORTION FIX
-   iPhoneでもカード比率を固定する最終補正
-========================================================= */
-
-/*
-  カードエリアそのものを
-  残り高さいっぱいに引き伸ばさない
-*/
-.card-stage {
-  min-height: 0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
-}
-
-
-/*
-  3枚のカードは横幅から高さを決める。
-  これで画面の高さに引っ張られなくなる。
-*/
-.main-cards {
-  width: 100%;
-  height: auto;
-
-  min-height: 0;
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-
-  align-items: center;
-
-  gap: clamp(6px, 1.8vw, 9px);
-
-  padding: 0 3px;
-
-  perspective: 1200px;
-}
-
-
-/*
-  メインカード
-  約 2 : 3 のトランプ比率
-*/
-.playing-card {
-  width: 100%;
-  height: auto;
-
-  aspect-ratio: 2 / 3;
-
-  min-width: 0;
-  min-height: 0;
-
-  padding: 0;
-
-  position: relative;
-
-  border: 0;
-
-  background: transparent;
-
-  perspective: 1000px;
-
-  transition:
-    transform 0.2s ease,
-    filter 0.2s ease;
-}
-
-
-/*
-  内側もカード比率に追従
-*/
-.playing-card-inner {
-  position: absolute;
-
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  transform-style: preserve-3d;
-
-  transition:
-    transform
-    0.62s
-    cubic-bezier(
-      0.2,
-      0.68,
-      0.24,
-      1
-    );
-}
-
-
-/* =========================================================
-   CARD FRONT
-   線画がカード中央に綺麗に入るよう調整
-========================================================= */
-
-.main-hand {
-  width: 72%;
-  height: 58%;
-
-  position: absolute;
-
-  z-index: 6;
-
-  left: 14%;
-  top: 18%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #171713;
-}
-
-
-/*
-  SVGを文字扱いせず、
-  カード内の図版として固定
-*/
-.main-hand .hand-art {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
-  overflow: visible;
-
-  color: #171713;
-}
-
-
-/*
-  グーは少し大きく
-*/
-.card-front.rock .main-hand {
-  width: 76%;
-  height: 61%;
-
-  left: 12%;
-  top: 17%;
-}
-
-
-/*
-  チョキは指が長いので
-  上下方向を少し広めに
-*/
-.card-front.scissors .main-hand {
-  width: 69%;
-  height: 62%;
-
-  left: 15.5%;
-  top: 15%;
-}
-
-
-/*
-  パーは横幅を少し広く
-*/
-.card-front.paper .main-hand {
-  width: 77%;
-  height: 61%;
-
-  left: 11.5%;
-  top: 16%;
-}
-
-
-/* =========================================================
-   RESULT OVERLAY
-   カード比率変更後の位置補正
-========================================================= */
-
-.result-overlay {
-  width:
-    calc(
-      (100% - 18px) / 3
-    );
-
-  height: 100%;
-
-  top: 0;
-}
-
-.position-0 {
-  left: 3px;
-}
-
-.position-1 {
-  left: 50%;
-
-  transform: translateX(-50%);
-}
-
-.position-2 {
-  right: 3px;
-}
-
-
-/*
-  真ん中だけresultAppearのtransformと
-  translateXが衝突するので個別処理
-*/
-.position-1 {
-  animation:
-    middleResultAppear
-    0.35s
-    0.52s
-    both;
-}
-
-@keyframes middleResultAppear {
-  from {
-    opacity: 0;
-
-    transform:
-      translateX(-50%)
-      translateY(5px)
-      scale(1.08);
-  }
-
-  to {
-    opacity: 1;
-
-    transform:
-      translateX(-50%)
-      translateY(0)
-      scale(1);
-  }
-}
-
-
-/* =========================================================
-   RESULT SIZE
-========================================================= */
-
-.result-word {
-  font-size:
-    clamp(
-      24px,
-      7.2vw,
-      36px
-    );
-}
-
-.prediction-result {
-  min-width: 92%;
-  max-width: 108%;
-
-  padding: 4px 3px;
-}
-
-
-/* =========================================================
-   FLIP BUTTON
-========================================================= */
-
-.flip-button {
-  flex: 0 0 auto;
-
-  width: 100%;
-
-  height:
-    clamp(
-      31px,
-      4.5dvh,
-      38px
-    );
-
-  margin-top:
-    clamp(
-      4px,
-      0.65dvh,
-      6px
-    );
-}
-
-
-/* =========================================================
-   BATTLE PANEL HEIGHT DISTRIBUTION
-========================================================= */
-
-.battle-panel {
-  grid-template-rows:
-    auto
-    auto
-    auto
-    minmax(0, 1fr)
-    auto
-    auto;
-}
-
-
-/*
-  カードステージに巨大な余白ができた場合でも
-  カード自体は伸ばさず中央配置
-*/
-.card-stage {
-  overflow: visible;
-}
-
-
-/* =========================================================
-   HISTORY
-========================================================= */
-
-.history-panel {
-  flex: 0 0 auto;
-}
-
-.history-cards {
-  width: 100%;
-
-  height:
-    clamp(
-      37px,
-      5.7dvh,
-      48px
-    );
-}
-
-
-/*
-  履歴カードの手もSVGとして固定
-*/
-.history-card .hand-art {
-  display: block;
-
-  width: 76%;
-  height: 76%;
-
-  position: absolute;
-
-  z-index: 3;
-
-  left: 12%;
-  top: 12%;
-
-  color: #171713;
-}
-
-
-/* =========================================================
-   DECORATION
-   iOSで装飾文字がカラー絵文字化するのを抑える
-========================================================= */
-
-.back-flower,
-.enemy-branches,
-.enemy-leaf,
-.frame-star,
-.spark,
-.history-star,
-.mask-star,
-.result-star {
-  font-family:
-    "Times New Roman",
-    Georgia,
-    serif;
-
-  font-variant-emoji: text;
-}
-
-
-/* =========================================================
-   iPHONE SHORT HEIGHT
-========================================================= */
-
-@media (max-height: 760px) {
-
-  .top-panel {
-    flex-basis: 116px;
-  }
-
-  .main-cards {
-    gap: 6px;
-  }
-
-  .playing-card {
-    aspect-ratio: 2 / 3;
-  }
-
-  .history-cards {
-    height: 36px;
-  }
-
-  .prediction-button {
-    height: 28px;
-  }
-
-  .next-button {
-    height: 31px;
-  }
-}
-
-
-/* =========================================================
-   VERY SHORT iPHONE
-========================================================= */
-
-@media (max-height: 680px) {
-
-  .top-panel {
-    flex-basis: 101px;
-  }
-
-  .playing-card {
-    aspect-ratio: 2 / 3;
-  }
-
-  .main-cards {
-    gap: 5px;
-  }
-
-  .prediction-button {
     height: 25px;
   }
 
-  .instruction h2 {
-    font-size: 9px;
+  .playing-card {
+    max-height: 160px;
+  }
+
+  .flip-button,
+  .next-button {
+    height: 28px;
+  }
+
+  .history-panel {
+    margin-top: 2px;
+    padding-top: 2px;
+  }
+
+  .history-panel h3 {
+    margin-bottom: 2px;
   }
 
   .history-cards {
-    height: 31px;
-  }
-
-  .next-button {
-    height: 28px;
+    height: 29px;
   }
 }
