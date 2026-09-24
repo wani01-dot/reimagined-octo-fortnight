@@ -29,11 +29,7 @@ const HANDS = {
   },
 };
 
-const HAND_KEYS = [
-  "rock",
-  "scissors",
-  "paper",
-];
+const HAND_KEYS = ["rock", "scissors", "paper"];
 
 const BEATS = {
   rock: "scissors",
@@ -346,13 +342,8 @@ function EnemyArt() {
     <div className="enemy-art">
       <div className="enemy-circle" />
 
-      <div className="enemy-branches branch-a">
-        ❧
-      </div>
-
-      <div className="enemy-branches branch-b">
-        ❧
-      </div>
+      <div className="enemy-branches branch-a">❧</div>
+      <div className="enemy-branches branch-b">❧</div>
 
       <div className="enemy-cloak cloak-left" />
       <div className="enemy-cloak cloak-right" />
@@ -377,11 +368,14 @@ function EnemyArt() {
 }
 
 /* =========================================
-   ゲーム
+   GAME
 ========================================= */
 
 export default function Home() {
   const [battle, setBattle] = useState(1);
+
+  const [phase, setPhase] = useState("normal");
+
   const [prediction, setPrediction] = useState(null);
   const [selected, setSelected] = useState(null);
   const [revealed, setRevealed] = useState(null);
@@ -398,6 +392,26 @@ export default function Home() {
     selected !== null &&
     prediction !== null &&
     result === null;
+
+  const rockCount = cards.filter(
+    (card) => card === "rock"
+  ).length;
+
+  const scissorsCount = cards.filter(
+    (card) => card === "scissors"
+  ).length;
+
+  const paperCount = cards.filter(
+    (card) => card === "paper"
+  ).length;
+
+  const finalValues = {
+    rock: rockCount * HANDS.rock.point,
+    scissors:
+      scissorsCount * HANDS.scissors.point,
+    paper:
+      paperCount * HANDS.paper.point,
+  };
 
   function chooseCard(index) {
     if (result !== null) return;
@@ -424,20 +438,34 @@ export default function Home() {
     }
 
     const actual =
-      BEATS[mine] === enemy ? "win" : "lose";
+      BEATS[mine] === enemy
+        ? "win"
+        : "lose";
 
     setTimeout(() => {
       setResult(actual);
-      setPredictionHit(prediction === actual);
-      setCards((old) => [...old, mine]);
+
+      setPredictionHit(
+        prediction === actual
+      );
+
+      /*
+        FINALでは履歴を増やさない。
+        通常戦だけ最大9枚まで保存。
+      */
+      if (phase === "normal") {
+        setCards((old) => {
+          if (old.length >= 9) {
+            return old;
+          }
+
+          return [...old, mine];
+        });
+      }
     }, 650);
   }
 
-  function resetRound(nextBattle = false) {
-    if (nextBattle) {
-      setBattle((old) => old + 1);
-    }
-
+  function clearRound() {
     setPrediction(null);
     setSelected(null);
     setRevealed(null);
@@ -447,12 +475,64 @@ export default function Home() {
     setPredictionHit(null);
   }
 
+  function nextNormalBattle() {
+    /*
+      9枚になったら通常戦は絶対に進めない。
+    */
+    if (cards.length >= 9) {
+      return;
+    }
+
+    setBattle((old) =>
+      Math.min(old + 1, 9)
+    );
+
+    clearRound();
+  }
+
+  function retryDraw() {
+    /*
+      あいこは同じBATTLEのまま再勝負
+    */
+    clearRound();
+  }
+
+  function startFinalBattle() {
+    if (cards.length !== 9) return;
+
+    setPhase("final");
+    clearRound();
+  }
+
+  function restartGame() {
+    setBattle(1);
+    setPhase("normal");
+    setCards([]);
+    clearRound();
+  }
+
   const resultLabel =
     result === "win"
       ? "WIN"
       : result === "lose"
       ? "LOSE"
       : "DRAW";
+
+  const currentPoint =
+    playerHand
+      ? HANDS[playerHand].point
+      : 0;
+
+  const currentFinalValue =
+    playerHand
+      ? finalValues[playerHand]
+      : 0;
+
+  const isNinthResult =
+    phase === "normal" &&
+    result !== null &&
+    result !== "draw" &&
+    cards.length === 9;
 
   return (
     <main className="screen">
@@ -464,6 +544,7 @@ export default function Home() {
       </div>
 
       {/* HEADER */}
+
       <section className="top-panel">
         <div className="title-block">
           <h1>
@@ -472,7 +553,9 @@ export default function Home() {
             FRIENDS
           </h1>
 
-          <p>じゃんけんは、出会いだ。</p>
+          <p>
+            じゃんけんは、出会いだ。
+          </p>
 
           <div className="tiny-copy">
             A
@@ -507,41 +590,94 @@ export default function Home() {
 
           <div className="enemy-name-card">
             <small>No.01</small>
-            <strong>ノクティス</strong>
+
+            <strong>
+              ノクティス
+            </strong>
+
             <em>Noctis</em>
-            <span>星喰らいの仮面</span>
+
+            <span>
+              星喰らいの仮面
+            </span>
           </div>
         </div>
       </section>
 
       {/* BATTLE */}
+
       <section className="battle-panel">
         <header className="battle-meta">
           <div className="battle-number">
-            SET {Math.ceil(battle / 3)} / BATTLE {battle}
+            {phase === "final"
+              ? "FINAL BATTLE"
+              : `SET ${Math.ceil(
+                  battle / 3
+                )} / BATTLE ${battle}`}
           </div>
 
           <div className="score-box">
-            <span>SCORE</span>
-            <strong>{cards.length}</strong>
+            <span>
+              {phase === "final"
+                ? "CARDS"
+                : "SCORE"}
+            </span>
+
+            <strong>
+              {cards.length}
+            </strong>
+
             <small>/ 9</small>
           </div>
         </header>
 
+        {/* FINAL倍率 */}
+
+        {phase === "final" && (
+          <div className="final-values">
+            <span>
+              R ×{rockCount}
+              {" "}
+              = {finalValues.rock}
+            </span>
+
+            <span>
+              S ×{scissorsCount}
+              {" "}
+              = {finalValues.scissors}
+            </span>
+
+            <span>
+              P ×{paperCount}
+              {" "}
+              = {finalValues.paper}
+            </span>
+          </div>
+        )}
+
         <div className="instruction">
           <h2>
-            カードを1枚選んで、同時に勝敗を予想しよう
+            {phase === "final"
+              ? "最後のカードを選んで、勝敗を予想しよう"
+              : "カードを1枚選んで、同時に勝敗を予想しよう"}
           </h2>
-          <p>※ あいこの場合は再勝負</p>
+
+          <p>
+            ※ あいこの場合は再勝負
+          </p>
         </div>
 
         <div className="prediction-row">
           <button
             className={`prediction-button win ${
-              prediction === "win" ? "active" : ""
+              prediction === "win"
+                ? "active"
+                : ""
             }`}
             onClick={() => {
-              if (!result) setPrediction("win");
+              if (!result) {
+                setPrediction("win");
+              }
             }}
           >
             <span>♛</span>
@@ -550,10 +686,14 @@ export default function Home() {
 
           <button
             className={`prediction-button lose ${
-              prediction === "lose" ? "active" : ""
+              prediction === "lose"
+                ? "active"
+                : ""
             }`}
             onClick={() => {
-              if (!result) setPrediction("lose");
+              if (!result) {
+                setPrediction("lose");
+              }
             }}
           >
             <span>☠</span>
@@ -563,62 +703,92 @@ export default function Home() {
 
         <div className="card-stage">
           <div className="main-cards">
-            {[0, 1, 2].map((index) => (
-              <PlayingCard
-                key={index}
-                index={index}
-                selected={selected === index}
-                revealed={revealed === index}
-                hand={
-                  revealed === index
-                    ? playerHand
-                    : null
-                }
-                locked={result !== null}
-                onSelect={chooseCard}
-              />
-            ))}
-
-            {result && revealed !== null && (
-              <div
-                className={[
-                  "result-overlay",
-                  `position-${revealed}`,
-                  result,
-                ].join(" ")}
-              >
-                <div className="result-word">
-                  <span className="result-star left">✦</span>
-                  {resultLabel}
-                  <span className="result-star right">✦</span>
-                </div>
-
-                <div className="prediction-result">
-                  {result === "draw" ? (
-                    <>
-                      <strong>あいこ</strong>
-                      <span>再勝負</span>
-                    </>
-                  ) : (
-                    <>
-                      <strong>
-                        {predictionHit
-                          ? "予言通り！"
-                          : "予言失敗"}
-                      </strong>
-
-                      <span>
-                        {predictionHit ? "+" : ""}
-                        {predictionHit
-                          ? HANDS[playerHand].point
-                          : 0}
-                        pt
-                      </span>
-                    </>
-                  )}
-                </div>
-              </div>
+            {[0, 1, 2].map(
+              (index) => (
+                <PlayingCard
+                  key={index}
+                  index={index}
+                  selected={
+                    selected === index
+                  }
+                  revealed={
+                    revealed === index
+                  }
+                  hand={
+                    revealed === index
+                      ? playerHand
+                      : null
+                  }
+                  locked={
+                    result !== null
+                  }
+                  onSelect={
+                    chooseCard
+                  }
+                />
+              )
             )}
+
+            {result &&
+              revealed !== null && (
+                <div
+                  className={[
+                    "result-overlay",
+                    `position-${revealed}`,
+                    result,
+                  ].join(" ")}
+                >
+                  <div className="result-word">
+                    <span className="result-star left">
+                      ✦
+                    </span>
+
+                    {resultLabel}
+
+                    <span className="result-star right">
+                      ✦
+                    </span>
+                  </div>
+
+                  <div className="prediction-result">
+                    {result ===
+                    "draw" ? (
+                      <>
+                        <strong>
+                          あいこ
+                        </strong>
+
+                        <span>
+                          再勝負
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <strong>
+                          {predictionHit
+                            ? "予言通り！"
+                            : "予言失敗"}
+                        </strong>
+
+                        <span>
+                          {phase ===
+                          "final"
+                            ? `×${currentFinalValue}`
+                            : `${
+                                predictionHit
+                                  ? "+"
+                                  : ""
+                              }${
+                                predictionHit
+                                  ? currentPoint
+                                  : 0
+                              }pt`}
+                        </span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              )}
           </div>
 
           {!result && (
@@ -627,39 +797,47 @@ export default function Home() {
               disabled={!canReveal}
               onClick={revealCard}
             >
-              選んだカードをめくる
+              {phase === "final"
+                ? "FINAL CARDをめくる"
+                : "選んだカードをめくる"}
             </button>
           )}
         </div>
 
         {result && (
           <div className="after-result">
-            <div className="actual-result">
-              あなた
-              <span className="mini-hand">
-                <HandArt hand={playerHand} />
-              </span>
-
-              <b>VS</b>
-
-              <span className="mini-hand">
-                <HandArt hand={enemyHand} />
-              </span>
-              仮面
-            </div>
-
             {result === "draw" ? (
               <button
                 className="next-button"
-                onClick={() => resetRound(false)}
+                onClick={retryDraw}
               >
                 再勝負する
+                <span>▶</span>
+              </button>
+            ) : phase === "final" ? (
+              <button
+                className="next-button"
+                onClick={restartGame}
+              >
+                もう一度遊ぶ
+                <span>▶</span>
+              </button>
+            ) : isNinthResult ? (
+              <button
+                className="next-button final-button"
+                onClick={
+                  startFinalBattle
+                }
+              >
+                FINAL BATTLEへ
                 <span>▶</span>
               </button>
             ) : (
               <button
                 className="next-button"
-                onClick={() => resetRound(true)}
+                onClick={
+                  nextNormalBattle
+                }
               >
                 次の勝負へ
                 <span>▶</span>
@@ -669,36 +847,50 @@ export default function Home() {
         )}
 
         {/* HISTORY */}
+
         <section className="history-panel">
-          <h3>これまでに引いたカード</h3>
+          <h3>
+            これまでに引いたカード
+          </h3>
 
           <div className="history-layout">
             <div className="history-cards">
-              {Array.from({ length: 9 }).map((_, index) => {
-                const hand = cards[index];
+              {Array.from({
+                length: 9,
+              }).map((_, index) => {
+                const hand =
+                  cards[index];
 
                 return (
                   <div
                     className={`history-card ${
-                      hand ? `filled ${hand}` : ""
+                      hand
+                        ? `filled ${hand}`
+                        : ""
                     }`}
                     key={index}
                   >
                     {hand ? (
                       <>
                         <span className="history-code">
-                          {HANDS[hand].code}
+                          {
+                            HANDS[hand]
+                              .code
+                          }
                         </span>
 
                         <div className="history-disc" />
 
-                        <HandArt hand={hand} />
+                        <HandArt
+                          hand={hand}
+                        />
                       </>
                     ) : (
                       <>
                         <span className="history-index">
                           {index + 1}
                         </span>
+
                         <span className="history-star">
                           ✦
                         </span>
