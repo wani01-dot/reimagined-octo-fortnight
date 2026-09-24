@@ -44,7 +44,8 @@ function randomHand() {
 }
 
 /* =========================================
-   手の線画
+   HAND ILLUSTRATIONS
+   antique playing-card style
 ========================================= */
 
 function RockHand() {
@@ -54,44 +55,169 @@ function RockHand() {
       className="hand-art"
       aria-hidden="true"
     >
-      <g
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.7"
+      {/* silhouette */}
+      <path
+        d="
+          M73 282
+          C74 262 73 243 70 225
+          C67 205 62 188 61 171
+          C60 156 63 145 69 137
+
+          C62 130 58 121 59 112
+          C60 101 67 94 77 92
+          C75 82 78 73 86 67
+          C94 61 104 62 112 68
+          C115 57 123 50 134 50
+          C145 50 153 57 155 68
+          C165 65 175 69 181 77
+          C188 86 186 98 179 106
+
+          C187 112 191 121 189 131
+          C187 142 179 150 168 153
+
+          C169 171 166 188 161 205
+          C155 224 151 243 151 260
+          L151 282
+          Z
+        "
+        fill="#eee5d2"
+        stroke="#171713"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
+      />
+
+      {/* index curled finger */}
+      <path
+        d="
+          M63 112
+          C66 101 76 96 87 97
+          C100 98 110 105 112 115
+          C114 124 108 132 98 134
+          C87 136 75 132 68 125
+          C63 121 61 116 63 112
+        "
+        fill="#eee5d2"
+        stroke="#171713"
+        strokeWidth="2.2"
+      />
+
+      {/* middle curled finger */}
+      <path
+        d="
+          M78 91
+          C78 79 86 71 97 70
+          C109 69 118 77 119 88
+          C120 99 113 107 102 109
+          C90 110 81 103 78 91
+        "
+        fill="#eee5d2"
+        stroke="#171713"
+        strokeWidth="2.2"
+      />
+
+      {/* ring curled finger */}
+      <path
+        d="
+          M112 70
+          C115 59 124 53 135 54
+          C146 55 153 63 153 74
+          C153 85 145 92 134 92
+          C122 92 114 83 112 70
+        "
+        fill="#eee5d2"
+        stroke="#171713"
+        strokeWidth="2.2"
+      />
+
+      {/* pinky */}
+      <path
+        d="
+          M154 77
+          C161 70 171 71 178 78
+          C185 85 185 95 179 103
+          C173 111 163 112 156 106
+          C149 100 148 85 154 77
+        "
+        fill="#eee5d2"
+        stroke="#171713"
+        strokeWidth="2.2"
+      />
+
+      {/* thumb */}
+      <path
+        d="
+          M70 138
+          C78 125 90 119 103 120
+          C115 121 124 129 125 140
+          C126 150 120 158 110 162
+          C99 166 87 162 78 155
+          C70 149 67 143 70 138
+        "
+        fill="#eee5d2"
+        stroke="#171713"
+        strokeWidth="2.4"
+      />
+
+      {/* engraving */}
+      <g
+        fill="none"
+        stroke="#171713"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity="0.82"
       >
-        <path d="M78 268 C72 239 67 217 66 194 C64 171 66 154 72 142" />
-        <path d="M145 270 C144 245 146 224 151 204 C156 185 162 170 162 154" />
+        <path d="M69 111 C78 106 91 107 101 113" />
+        <path d="M83 87 C92 82 104 83 112 89" />
+        <path d="M120 70 C129 66 141 68 148 75" />
+        <path d="M159 86 C165 82 173 83 178 89" />
 
-        <path d="M72 142 C61 131 57 118 61 106 C65 94 76 90 87 96" />
-        <path d="M87 96 C78 82 82 67 93 61 C105 55 118 61 123 74" />
-        <path d="M123 74 C126 60 138 53 149 58 C160 63 163 75 158 89" />
-        <path d="M158 89 C170 86 181 94 182 106 C183 119 174 129 162 134" />
+        <path d="M75 121 C83 118 92 119 99 124" />
+        <path d="M88 97 C96 94 105 95 111 100" />
+        <path d="M124 80 C132 77 141 79 147 84" />
 
-        <path d="M72 142 C78 131 88 125 101 126 C115 127 123 137 122 150" />
-        <path d="M122 150 C124 137 134 128 147 129 C160 130 168 141 166 154" />
+        <path d="M78 137 C88 142 99 144 111 141" />
+        <path d="M81 150 C91 156 102 157 113 153" />
 
-        <path d="M75 111 C88 108 101 113 107 123" />
-        <path d="M94 78 C108 77 119 83 124 94" />
-        <path d="M130 73 C142 75 151 83 153 95" />
+        <path d="M73 169 C94 180 124 181 153 171" />
+        <path d="M72 188 C94 199 125 201 155 191" />
+        <path d="M75 209 C96 218 124 219 151 211" />
+        <path d="M79 232 C99 239 123 240 146 233" />
+        <path d="M83 255 C100 260 122 261 141 256" />
 
-        <path d="M82 145 C92 154 105 157 118 154" />
-        <path d="M126 151 C137 157 149 158 159 153" />
+        <path d="M88 114 C91 119 91 125 89 130" />
+        <path d="M101 82 C104 88 104 94 102 100" />
+        <path d="M136 62 C139 68 139 75 137 81" />
+        <path d="M169 78 C172 84 172 91 169 97" />
 
-        <path d="M79 167 C99 177 126 178 151 167" />
-        <path d="M82 191 C101 200 124 201 145 193" />
-        <path d="M86 218 C103 224 123 225 140 220" />
+        <path d="M87 177 C94 181 101 183 108 183" />
+        <path d="M116 184 C125 184 134 181 141 176" />
 
-        <path d="M91 106 C94 112 95 118 94 124" />
-        <path d="M112 82 C115 89 116 96 115 103" />
-        <path d="M143 82 C145 88 145 95 143 101" />
+        <path d="M87 199 C94 204 102 206 110 206" />
+        <path d="M119 206 C127 206 135 203 142 199" />
 
-        <path d="M90 159 C94 164 99 166 104 167" />
-        <path d="M132 160 C137 164 143 165 148 164" />
+        <path d="M92 220 C98 224 105 226 112 226" />
+        <path d="M120 226 C127 226 133 224 139 220" />
+      </g>
 
-        <path d="M91 186 C99 190 106 191 113 190" />
-        <path d="M119 191 C127 192 134 190 140 186" />
+      {/* nails / hatch */}
+      <g
+        fill="none"
+        stroke="#171713"
+        strokeWidth="0.95"
+        strokeLinecap="round"
+        opacity="0.62"
+      >
+        <path d="M73 104 C78 101 84 101 89 104" />
+        <path d="M88 77 C94 74 100 75 105 78" />
+        <path d="M126 59 C132 57 138 58 143 61" />
+        <path d="M161 75 C166 73 171 75 175 78" />
+
+        <path d="M82 187 l-7 5" />
+        <path d="M88 191 l-7 6" />
+        <path d="M144 187 l7 5" />
+        <path d="M138 192 l7 6" />
       </g>
     </svg>
   );
@@ -104,42 +230,140 @@ function ScissorsHand() {
       className="hand-art"
       aria-hidden="true"
     >
-      <g
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.7"
+      {/* palm + wrist */}
+      <path
+        d="
+          M76 282
+          C76 260 74 239 72 219
+          C70 199 70 181 75 164
+          C79 151 85 141 94 134
+
+          C84 126 78 116 79 105
+          C80 94 88 87 98 87
+
+          L83 47
+          C78 32 83 20 95 17
+          C107 14 117 22 121 37
+          L132 82
+
+          L145 38
+          C149 23 159 16 171 20
+          C183 24 187 36 182 51
+          L164 110
+
+          C174 103 184 104 191 112
+          C199 121 197 134 187 143
+          L169 159
+
+          C167 176 163 193 158 210
+          C153 228 150 246 151 263
+          L151 282
+          Z
+        "
+        fill="#eee5d2"
+        stroke="#171713"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
+      />
+
+      {/* folded ring finger */}
+      <path
+        d="
+          M96 132
+          C88 125 84 116 86 107
+          C88 98 96 93 105 95
+          C114 97 120 104 119 113
+          C118 123 110 131 96 132
+        "
+        fill="#eee5d2"
+        stroke="#171713"
+        strokeWidth="2.1"
+      />
+
+      {/* folded pinky */}
+      <path
+        d="
+          M120 130
+          C116 120 118 111 125 105
+          C133 99 143 101 149 108
+          C155 116 153 126 146 132
+          C138 138 128 137 120 130
+        "
+        fill="#eee5d2"
+        stroke="#171713"
+        strokeWidth="2.1"
+      />
+
+      {/* thumb crossing */}
+      <path
+        d="
+          M91 137
+          C105 127 120 124 137 126
+          C149 127 159 135 165 146
+          C169 154 168 162 162 168
+          C154 175 143 172 135 164
+          C125 154 114 151 101 154
+          C93 156 87 151 86 145
+          C85 142 87 139 91 137
+        "
+        fill="#eee5d2"
+        stroke="#171713"
+        strokeWidth="2.4"
+      />
+
+      {/* finger details */}
+      <g
+        fill="none"
+        stroke="#171713"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity="0.82"
       >
-        <path d="M79 270 C75 246 71 224 72 202 C73 180 78 163 86 151" />
-        <path d="M149 270 C146 246 145 226 148 207 C151 190 157 174 166 160" />
+        <path d="M89 48 C97 44 108 45 116 50" />
+        <path d="M91 67 C100 63 111 64 119 70" />
+        <path d="M148 43 C157 40 169 43 177 49" />
+        <path d="M143 65 C152 62 163 65 172 71" />
 
-        <path d="M88 151 C77 143 70 133 70 122 C70 110 78 101 90 100" />
+        <path d="M99 96 C105 101 109 108 109 115" />
+        <path d="M128 108 C135 110 141 115 144 122" />
 
-        <path d="M90 100 L78 46 C75 31 81 20 93 18 C105 16 113 24 116 39 L124 94" />
+        <path d="M94 140 C107 143 120 148 130 157" />
+        <path d="M108 135 C121 135 134 139 145 147" />
 
-        <path d="M124 94 L139 35 C143 20 153 14 165 18 C177 22 181 33 177 48 L158 115" />
+        <path d="M81 166 C100 177 128 179 157 169" />
+        <path d="M78 188 C99 199 128 201 154 191" />
+        <path d="M79 211 C100 220 126 221 151 213" />
+        <path d="M82 236 C101 242 124 243 146 237" />
+        <path d="M86 259 C102 263 122 264 141 260" />
 
-        <path d="M158 115 C169 104 182 104 190 113 C198 122 196 134 186 143 L166 160" />
+        <path d="M96 37 C100 43 101 50 100 56" />
+        <path d="M164 31 C168 37 168 44 166 50" />
 
-        <path d="M89 101 C97 113 108 120 122 122" />
-        <path d="M122 122 C136 124 148 121 158 115" />
+        <path d="M89 180 C96 185 103 187 111 187" />
+        <path d="M119 188 C128 188 136 185 143 180" />
 
-        <path d="M88 151 C102 159 117 161 132 157" />
-        <path d="M132 157 C143 153 154 153 164 159" />
+        <path d="M91 202 C99 207 106 209 114 209" />
+        <path d="M122 209 C130 209 137 206 143 202" />
 
-        <path d="M91 176 C108 184 128 185 147 179" />
-        <path d="M91 201 C108 209 127 210 144 204" />
-        <path d="M92 229 C108 234 125 235 140 231" />
+        <path d="M94 225 C101 229 108 231 115 231" />
+        <path d="M122 231 C129 231 135 229 141 225" />
+      </g>
 
-        <path d="M85 51 C94 49 103 51 112 57" />
-        <path d="M145 46 C154 48 163 52 171 59" />
+      {/* nails */}
+      <g
+        fill="none"
+        stroke="#171713"
+        strokeWidth="0.95"
+        opacity="0.64"
+      >
+        <path d="M88 34 C94 29 103 29 109 34 C111 40 110 46 106 50" />
+        <path d="M153 35 C158 29 168 29 174 35 C176 41 175 47 171 52" />
 
-        <path d="M89 73 C98 71 107 74 116 80" />
-        <path d="M139 70 C148 72 157 77 165 84" />
-
-        <path d="M99 129 C104 135 111 139 119 140" />
-        <path d="M127 140 C135 140 142 137 148 132" />
+        <path d="M85 188 l-7 5" />
+        <path d="M91 192 l-7 6" />
+        <path d="M145 188 l7 5" />
       </g>
     </svg>
   );
@@ -152,46 +376,134 @@ function PaperHand() {
       className="hand-art"
       aria-hidden="true"
     >
-      <g
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.7"
+      {/* full open hand */}
+      <path
+        d="
+          M75 282
+          C75 261 73 241 70 221
+          C67 202 63 184 61 166
+
+          C59 151 61 139 66 129
+
+          L55 95
+          C51 82 56 72 67 69
+          C78 66 87 73 91 86
+          L98 109
+
+          L91 54
+          C89 39 96 29 108 27
+          C120 25 129 34 130 49
+          L133 105
+
+          L137 39
+          C138 24 146 15 158 16
+          C170 17 177 27 176 42
+          L171 110
+
+          L181 58
+          C184 44 193 37 204 40
+          C215 43 220 54 216 68
+          L204 127
+
+          C201 143 195 158 186 171
+          C177 184 168 196 163 211
+          C157 229 153 247 153 264
+          L153 282
+          Z
+        "
+        fill="#eee5d2"
+        stroke="#171713"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
+      />
+
+      {/* thumb */}
+      <path
+        d="
+          M66 129
+          C57 120 49 110 47 100
+          C45 90 50 82 59 80
+          C69 78 78 85 84 96
+          L99 124
+          C104 134 102 145 94 151
+          C85 157 74 151 66 129
+          Z
+        "
+        fill="#eee5d2"
+        stroke="#171713"
+        strokeWidth="2.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* palm engraving */}
+      <g
+        fill="none"
+        stroke="#171713"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity="0.82"
       >
-        <path d="M76 272 C72 246 68 221 69 196 C70 173 75 155 80 140" />
-        <path d="M151 272 C149 246 150 225 155 204 C160 184 166 166 169 145" />
+        {/* finger joints */}
+        <path d="M61 91 C69 87 79 89 87 95" />
+        <path d="M65 108 C73 104 83 106 91 112" />
 
-        <path d="M80 140 L68 84 C65 70 70 60 81 58 C92 56 100 64 102 78 L106 111" />
+        <path d="M95 59 C104 55 117 56 126 62" />
+        <path d="M97 80 C106 76 119 77 129 83" />
 
-        <path d="M106 111 L105 46 C105 31 112 22 124 22 C136 22 143 31 143 46 L143 108" />
+        <path d="M141 48 C150 44 163 46 172 52" />
+        <path d="M139 72 C149 68 162 70 172 76" />
 
-        <path d="M143 108 L149 55 C151 41 159 34 170 35 C181 36 187 46 185 60 L178 120" />
+        <path d="M184 67 C192 64 203 67 210 73" />
+        <path d="M180 90 C190 87 200 90 207 96" />
 
-        <path d="M178 120 L181 79 C182 66 189 59 199 61 C209 63 213 72 211 85 L204 139 C202 151 196 162 188 171" />
+        {/* finger longitudinal detail */}
+        <path d="M108 34 C112 42 113 51 112 60" />
+        <path d="M157 23 C161 32 161 42 159 51" />
+        <path d="M201 47 C204 55 204 64 201 72" />
 
-        <path d="M80 140 C69 130 63 119 64 108 C65 96 73 89 84 90 C94 91 101 100 106 111" />
+        {/* palm lines */}
+        <path d="M74 140 C94 151 120 155 147 149" />
+        <path d="M80 158 C101 168 128 170 157 161" />
 
-        <path d="M82 147 C100 157 123 160 146 154" />
-        <path d="M146 154 C160 151 174 156 188 171" />
+        <path d="M75 179 C96 190 126 192 158 181" />
+        <path d="M74 201 C96 211 126 213 155 203" />
+        <path d="M78 224 C98 232 124 234 150 226" />
+        <path d="M82 247 C101 253 123 254 145 248" />
 
-        <path d="M84 174 C103 184 127 186 151 179" />
-        <path d="M85 202 C104 211 126 212 147 205" />
-        <path d="M88 231 C104 237 124 238 142 233" />
+        {/* palm creases */}
+        <path d="M86 132 C95 139 105 142 116 142" />
+        <path d="M124 142 C136 142 146 138 154 131" />
 
-        <path d="M73 89 C82 87 92 90 100 97" />
-        <path d="M109 60 C119 57 131 58 140 64" />
-        <path d="M150 70 C160 68 170 71 180 78" />
-        <path d="M183 94 C192 94 201 98 207 104" />
+        <path d="M88 174 C97 179 106 181 115 181" />
+        <path d="M123 181 C133 181 142 178 150 173" />
 
-        <path d="M111 91 C120 88 131 89 140 94" />
-        <path d="M150 100 C159 98 169 101 177 106" />
+        <path d="M89 195 C98 200 107 202 116 202" />
+        <path d="M124 202 C133 202 141 199 148 195" />
 
-        <path d="M91 158 C97 164 105 168 113 169" />
-        <path d="M122 170 C132 170 140 167 148 162" />
+        <path d="M92 217 C100 221 108 223 116 223" />
+        <path d="M124 223 C132 223 139 221 145 217" />
+      </g>
 
-        <path d="M97 191 C104 195 112 197 119 197" />
-        <path d="M126 197 C134 197 141 194 147 190" />
+      {/* nails */}
+      <g
+        fill="none"
+        stroke="#171713"
+        strokeWidth="0.95"
+        strokeLinecap="round"
+        opacity="0.62"
+      >
+        <path d="M58 82 C64 77 73 78 79 83" />
+        <path d="M98 39 C105 33 116 34 122 40" />
+        <path d="M145 29 C152 23 164 24 170 31" />
+        <path d="M190 51 C197 46 207 49 211 56" />
+
+        <path d="M72 188 l-7 5" />
+        <path d="M78 193 l-7 6" />
+        <path d="M151 188 l8 5" />
+        <path d="M145 193 l8 6" />
       </g>
     </svg>
   );
@@ -204,7 +516,7 @@ function HandArt({ hand }) {
 }
 
 /* =========================================
-   カード
+   CARD
 ========================================= */
 
 function CardBack() {
@@ -334,7 +646,7 @@ function PlayingCard({
 }
 
 /* =========================================
-   仮面
+   ENEMY
 ========================================= */
 
 function EnemyArt() {
@@ -342,8 +654,13 @@ function EnemyArt() {
     <div className="enemy-art">
       <div className="enemy-circle" />
 
-      <div className="enemy-branches branch-a">❧</div>
-      <div className="enemy-branches branch-b">❧</div>
+      <div className="enemy-branches branch-a">
+        ❧
+      </div>
+
+      <div className="enemy-branches branch-b">
+        ❧
+      </div>
 
       <div className="enemy-cloak cloak-left" />
       <div className="enemy-cloak cloak-right" />
@@ -360,9 +677,17 @@ function EnemyArt() {
         <div className="mask-star">✦</div>
       </div>
 
-      <div className="enemy-leaf leaf-a">❧</div>
-      <div className="enemy-leaf leaf-b">❧</div>
-      <div className="enemy-leaf leaf-c">❧</div>
+      <div className="enemy-leaf leaf-a">
+        ❧
+      </div>
+
+      <div className="enemy-leaf leaf-b">
+        ❧
+      </div>
+
+      <div className="enemy-leaf leaf-c">
+        ❧
+      </div>
     </div>
   );
 }
@@ -373,48 +698,69 @@ function EnemyArt() {
 
 export default function Home() {
   const [battle, setBattle] = useState(1);
-
   const [phase, setPhase] = useState("normal");
 
-  const [prediction, setPrediction] = useState(null);
-  const [selected, setSelected] = useState(null);
-  const [revealed, setRevealed] = useState(null);
+  const [prediction, setPrediction] =
+    useState(null);
 
-  const [playerHand, setPlayerHand] = useState(null);
-  const [enemyHand, setEnemyHand] = useState(null);
+  const [selected, setSelected] =
+    useState(null);
 
-  const [result, setResult] = useState(null);
-  const [predictionHit, setPredictionHit] = useState(null);
+  const [revealed, setRevealed] =
+    useState(null);
 
-  const [cards, setCards] = useState([]);
+  const [playerHand, setPlayerHand] =
+    useState(null);
+
+  const [enemyHand, setEnemyHand] =
+    useState(null);
+
+  const [result, setResult] =
+    useState(null);
+
+  const [predictionHit, setPredictionHit] =
+    useState(null);
+
+  const [cards, setCards] =
+    useState([]);
 
   const canReveal =
     selected !== null &&
     prediction !== null &&
     result === null;
 
-  const rockCount = cards.filter(
-    (card) => card === "rock"
-  ).length;
+  const rockCount =
+    cards.filter(
+      (card) => card === "rock"
+    ).length;
 
-  const scissorsCount = cards.filter(
-    (card) => card === "scissors"
-  ).length;
+  const scissorsCount =
+    cards.filter(
+      (card) => card === "scissors"
+    ).length;
 
-  const paperCount = cards.filter(
-    (card) => card === "paper"
-  ).length;
+  const paperCount =
+    cards.filter(
+      (card) => card === "paper"
+    ).length;
 
   const finalValues = {
-    rock: rockCount * HANDS.rock.point,
+    rock:
+      rockCount *
+      HANDS.rock.point,
+
     scissors:
-      scissorsCount * HANDS.scissors.point,
+      scissorsCount *
+      HANDS.scissors.point,
+
     paper:
-      paperCount * HANDS.paper.point,
+      paperCount *
+      HANDS.paper.point,
   };
 
   function chooseCard(index) {
     if (result !== null) return;
+
     setSelected(index);
   }
 
@@ -449,10 +795,6 @@ export default function Home() {
         prediction === actual
       );
 
-      /*
-        FINALでは履歴を増やさない。
-        通常戦だけ最大9枚まで保存。
-      */
       if (phase === "normal") {
         setCards((old) => {
           if (old.length >= 9) {
@@ -476,9 +818,6 @@ export default function Home() {
   }
 
   function nextNormalBattle() {
-    /*
-      9枚になったら通常戦は絶対に進めない。
-    */
     if (cards.length >= 9) {
       return;
     }
@@ -491,9 +830,6 @@ export default function Home() {
   }
 
   function retryDraw() {
-    /*
-      あいこは同じBATTLEのまま再勝負
-    */
     clearRound();
   }
 
@@ -537,10 +873,21 @@ export default function Home() {
   return (
     <main className="screen">
       <div className="screen-frame">
-        <i className="frame-star fs-a">✦</i>
-        <i className="frame-star fs-b">✦</i>
-        <i className="frame-star fs-c">✦</i>
-        <i className="frame-star fs-d">✦</i>
+        <i className="frame-star fs-a">
+          ✦
+        </i>
+
+        <i className="frame-star fs-b">
+          ✦
+        </i>
+
+        <i className="frame-star fs-c">
+          ✦
+        </i>
+
+        <i className="frame-star fs-d">
+          ✦
+        </i>
       </div>
 
       {/* HEADER */}
@@ -627,30 +974,27 @@ export default function Home() {
               {cards.length}
             </strong>
 
-            <small>/ 9</small>
+            <small>
+              / 9
+            </small>
           </div>
         </header>
-
-        {/* FINAL倍率 */}
 
         {phase === "final" && (
           <div className="final-values">
             <span>
-              R ×{rockCount}
-              {" "}
-              = {finalValues.rock}
+              R ×{rockCount} ={" "}
+              {finalValues.rock}
             </span>
 
             <span>
-              S ×{scissorsCount}
-              {" "}
-              = {finalValues.scissors}
+              S ×{scissorsCount} ={" "}
+              {finalValues.scissors}
             </span>
 
             <span>
-              P ×{paperCount}
-              {" "}
-              = {finalValues.paper}
+              P ×{paperCount} ={" "}
+              {finalValues.paper}
             </span>
           </div>
         )}
@@ -857,48 +1201,51 @@ export default function Home() {
             <div className="history-cards">
               {Array.from({
                 length: 9,
-              }).map((_, index) => {
-                const hand =
-                  cards[index];
+              }).map(
+                (_, index) => {
+                  const hand =
+                    cards[index];
 
-                return (
-                  <div
-                    className={`history-card ${
-                      hand
-                        ? `filled ${hand}`
-                        : ""
-                    }`}
-                    key={index}
-                  >
-                    {hand ? (
-                      <>
-                        <span className="history-code">
-                          {
-                            HANDS[hand]
-                              .code
-                          }
-                        </span>
+                  return (
+                    <div
+                      className={`history-card ${
+                        hand
+                          ? `filled ${hand}`
+                          : ""
+                      }`}
+                      key={index}
+                    >
+                      {hand ? (
+                        <>
+                          <span className="history-code">
+                            {
+                              HANDS[
+                                hand
+                              ].code
+                            }
+                          </span>
 
-                        <div className="history-disc" />
+                          <div className="history-disc" />
 
-                        <HandArt
-                          hand={hand}
-                        />
-                      </>
-                    ) : (
-                      <>
-                        <span className="history-index">
-                          {index + 1}
-                        </span>
+                          <HandArt
+                            hand={hand}
+                          />
+                        </>
+                      ) : (
+                        <>
+                          <span className="history-index">
+                            {index + 1}
+                          </span>
 
-                        <span className="history-star">
-                          ✦
-                        </span>
-                      </>
-                    )}
-                  </div>
-                );
-              })}
+                          <span className="history-star">
+                            ✦
+                          </span>
+                        </>
+                      )}
+                    </div>
+                  );
+                }
+              )}
             </div>
           </div>
         </section>
